@@ -1,3 +1,3 @@
 # FotocentreInformationalSystem
 
-This is my project for Data Bases course.
+This is my project for Data Base's course.
