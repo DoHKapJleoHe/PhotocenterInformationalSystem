@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.g20202.vartazaryan.photocentreinformationalsystem;
+package ru.nsu.ccfit.g20202.vartazaryan;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

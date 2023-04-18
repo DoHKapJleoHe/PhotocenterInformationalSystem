@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.g20202.vartazaryan.photocentreinformationalsystem;
+package ru.nsu.ccfit.g20202.vartazaryan;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
