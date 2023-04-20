@@ -5,14 +5,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Kiosk
+public class FilmingOrder
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long workplaces;
-
     @ManyToOne
-    private Filial filial;
+    private Client client;
+    private double price;
+    private String urgency;
+
 }

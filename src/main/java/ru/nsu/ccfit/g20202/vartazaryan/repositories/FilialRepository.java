@@ -5,4 +5,5 @@ import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 
 public interface FilialRepository extends JpaRepository<Filial, Long>
 {
+
 }
