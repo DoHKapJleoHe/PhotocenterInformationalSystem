@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
+import App from "./App";
 
-const elements = (
-    <div>
-        <header>Photo center informational system</header>
-        <h1>Hello!</h1>
-        <input placeholder={"Table name"}/>
-    </div>)
+import './css/main.css'
+import './css/Button.css'
+import './css/Header.css'
+import './css/Input.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))
-app.render(elements)
+app.render(<App/>)
