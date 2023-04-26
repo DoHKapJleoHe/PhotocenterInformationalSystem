@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
-import Button from "./components/Button";
+import Input from "./components/Input";
 
 class App extends React.Component
 {
@@ -8,8 +8,7 @@ class App extends React.Component
         return(
             <div>
                 <Header/>
-                <input placeholder={"Table name"} className={"input"}/>
-                <Button/>
+                <Input/>
             </div>)
     }
 }

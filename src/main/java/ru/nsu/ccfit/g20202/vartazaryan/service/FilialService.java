@@ -7,6 +7,7 @@ import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.FilialRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -17,7 +18,6 @@ public class FilialService
     public Filial createFilial(FilialDTO filialDTO)
     {
         Filial filial = Filial.builder()
-                .id(filialDTO.getId())
                 .name(filialDTO.getName())
                 .city(filialDTO.getCity())
                 .street(filialDTO.getStreet())
@@ -25,6 +25,11 @@ public class FilialService
                 .build();
 
         return filialRepository.save(filial);
+    }
+
+    public Optional<Filial> getFilialById(Long id)
+    {
+        return filialRepository.findById(id);
     }
 
     public List<Filial> getAllFilials()
