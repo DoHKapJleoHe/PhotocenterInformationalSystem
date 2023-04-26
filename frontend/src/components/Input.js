@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom";
 
 const USERS = "http://localhost:8080/filials";
 
@@ -6,7 +7,7 @@ let Input = (props, state) => {
         const [text, setText] = useState('');
 
         const handleClick = () => {
-            alert(text);
+
         }
 
         const handleChange = (event) => {
@@ -16,7 +17,9 @@ let Input = (props, state) => {
         return (
             <div>
                 <input className={"input"} placeholder={"Table name"} onChange={handleChange}/>
-                <button className={"button"} onClick={handleClick}> Search! </button>
+                <Link to={"/search"}>
+                    <button className={"button"} onClick={handleClick}> Search! </button>
+                </Link>
             </div>
         )
     }
