@@ -2,7 +2,6 @@ import React from "react";
 import {Route, Routes, Link} from "react-router-dom";
 
 import Header from "./components/Header";
-import Input from "./components/Input";
 import FilialsPage from "./pages/FilialsPage"
 
 class App extends React.Component
@@ -11,12 +10,14 @@ class App extends React.Component
         return(
             <div>
                 <Header/>
-                <Link to={"/filials"}>
-                    <button></button>
-                </Link>
+                <p>
+                    <Link to={"/filials"}>Филиалы</Link>
+                </p>
+                <p>
+                    <Link to={"/kiosks"}>Киоски</Link>
+                </p>
                 <Routes>
-                    // Here in "path" we specify address in browser without name of the site.
-                    <Route path={"/filials"} element={<FilialsPage/>}/>
+                    <Route exact path={"/filials"} element={<FilialsPage/>}/>
                 </Routes>
             </div>)
     }

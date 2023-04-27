@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {Link} from "react-router-dom";
 
-const USERS = "http://localhost:8080/filials";
-
 let Input = (props, state) => {
         const [text, setText] = useState('');
 
