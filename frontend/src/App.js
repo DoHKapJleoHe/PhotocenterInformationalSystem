@@ -11,11 +11,10 @@ class App extends React.Component
             <div>
                 <Header/>
                 <p>
-                    <Link to={"/filials"}>Филиалы</Link>
+                    <Link to={"/filials"} className={"link"}>Филиалы</Link>
+                    <Link to={"/kiosks"} className={"link"}>Киоски</Link>
                 </p>
-                <p>
-                    <Link to={"/kiosks"}>Киоски</Link>
-                </p>
+
                 <Routes>
                     <Route exact path={"/filials"} element={<FilialsPage/>}/>
                 </Routes>
