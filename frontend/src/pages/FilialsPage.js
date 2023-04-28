@@ -8,34 +8,38 @@ class FilialsPage extends React.Component
     constructor(props) {
         super(props);
         this.state = {
-            filialsData: []
+            filialData: []
         }
     }
 
     componentDidMount() {
         axios.get(FILIALS).then(response => {
-            this.state({filialsData: response.data})
-        })
+            console.log(response.data);
+            this.setState({filialData: response.data});
+        }).catch(error => {
+                console.error(error);
+            });
     }
 
     render() {
-        return(
-            <div>
+        return(<div>
                 <h2>Филиалы</h2>
                 <table>
                     <thead>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Street</th>
-                        <th>Workplaces</th>
-
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>City</th>
+                    <th>Street</th>
+                    <th>Workplaces</th>
                     </thead>
                     <tbody>
-                    {this.state.filialsData.map(filial => (
+                    {this.state.filialData.map(filial => (
                         <tr key={filial.id}>
                             <td>{filial.id}</td>
                             <td>{filial.name}</td>
+                            <td>{filial.city}</td>
+                            <td>{filial.street}</td>
+                            <td>{filial.workplaces}</td>
                         </tr>
                     ))}
                     </tbody>
