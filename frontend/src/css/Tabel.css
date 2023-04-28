@@ -1,0 +1,29 @@
+.table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 50%;
+    margin-bottom: 1rem;
+    color: white;
+    font-size: .9em;
+    font-weight: 400;
+    text-align: left;
+
+}
+
+.thead{
+    background-color: #e9ecef;
+    border-top: solid 2px #dee2e6;
+    border-bottom: solid 2px #dee2e6;
+    color: #212529;
+}
+
+th, td {
+    padding: .75rem .5rem;
+    border-bottom: solid 1px #dee2e6;
+}
+
+tbody td:hover {
+    background-color: #5b5b58;
+    cursor: pointer;
+}
+

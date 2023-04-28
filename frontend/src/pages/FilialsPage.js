@@ -24,8 +24,8 @@ class FilialsPage extends React.Component
     render() {
         return(<div>
                 <h2>Филиалы</h2>
-                <table>
-                    <thead>
+                <table className={"table"}>
+                    <thead className={"thead"}>
                     <th>ID</th>
                     <th>Name</th>
                     <th>City</th>
