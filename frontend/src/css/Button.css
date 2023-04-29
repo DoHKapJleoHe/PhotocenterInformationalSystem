@@ -1,6 +1,10 @@
 .button{
-    display: block;
-    width: 105px;
-    height: 25px;
-    margin: 8px 8px 600px 683px;
+    position: absolute;
+    margin-bottom: 10px;
+    top: 10px;
+    height: 20px;
+    width: 100px;
+    margin-top: 260px;
+    text-align: center;
+    margin-left: 985px;
 }

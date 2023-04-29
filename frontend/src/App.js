@@ -3,6 +3,7 @@ import {Route, Routes, Link} from "react-router-dom";
 
 import Header from "./components/Header";
 import FilialsPage from "./pages/FilialsPage"
+import KiosksPage from "./pages/KiosksPage";
 
 class App extends React.Component
 {
@@ -16,7 +17,8 @@ class App extends React.Component
                 </p>
 
                 <Routes>
-                    <Route exact path={"/filials"} element={<FilialsPage/>}/>
+                    <Route path={"/filials"} element={<FilialsPage/>}/>
+                    <Route exact path={"/kiosks"} element={<KiosksPage/>}/>
                 </Routes>
             </div>)
     }

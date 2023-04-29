@@ -10,7 +10,7 @@ public class Kiosk
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private Long kioskNumber;
     private Long workplaces;
 
     @ManyToOne

@@ -4,32 +4,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
-import ru.nsu.ccfit.g20202.vartazaryan.service.FilialService;
+import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
+import ru.nsu.ccfit.g20202.vartazaryan.service.KioskService;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/filials")
-public class FilialController
+@RequestMapping("/kiosks")
+public class KioskController
 {
     @Autowired
-    private FilialService filialService;
+    private KioskService kioskService;
 
     @GetMapping
-    public List<Filial> getFilials()
+    public List<Kiosk> getKiosks()
     {
         System.out.println("Got GET request!");
-        return filialService.getAllFilials();
+        return kioskService.getAllKiosks();
     }
 
     @GetMapping("/{id}")
-    public Filial getFilialById(@PathVariable Long id)
+    public Kiosk getKioskById(@PathVariable Long id)
     {
-        Optional<Filial> filial = filialService.getFilialById(id);
+        Optional<Kiosk> kiosk = kioskService.getKioskById(id);
         System.out.println("Hi");
-        return filial.get();
+        return kiosk.get();
     }
 
     @PutMapping
@@ -41,13 +42,13 @@ public class FilialController
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id)
     {
-        filialService.deleteFilial(id);
+        kioskService.deleteKiosk(id);
     }
 
     @PostMapping()
     public void create(@RequestBody FilialDTO dto)
     {
         System.out.println("Got POST request!");
-        filialService.createFilial(dto);
+        kioskService.createKiosk(dto);
     }
 }

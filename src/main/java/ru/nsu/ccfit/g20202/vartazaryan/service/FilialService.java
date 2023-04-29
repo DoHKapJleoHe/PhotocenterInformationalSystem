@@ -15,7 +15,7 @@ public class FilialService
 {
     private final FilialRepository filialRepository;
 
-    public Filial createFilial(FilialDTO filialDTO)
+    public void createFilial(FilialDTO filialDTO)
     {
         Filial filial = Filial.builder()
                 .name(filialDTO.getName())
@@ -24,6 +24,16 @@ public class FilialService
                 .workplaces(filialDTO.getWorkplaces())
                 .build();
 
+        filialRepository.save(filial);
+    }
+
+    public void deleteFilial(Long id)
+    {
+        filialRepository.deleteById(id);
+    }
+
+    public Filial update(Filial filial)
+    {
         return filialRepository.save(filial);
     }
 

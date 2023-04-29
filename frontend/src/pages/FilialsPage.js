@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import Input from "../components/Input";
 
 const FILIALS = 'http://localhost:8080/filials';
 
@@ -22,30 +23,32 @@ class FilialsPage extends React.Component
     }
 
     render() {
-        return(<div>
+        return(
+            <div>
                 <h2>Филиалы</h2>
-                <table className={"table"}>
-                    <thead className={"thead"}>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Street</th>
-                    <th>Workplaces</th>
-                    </thead>
-                    <tbody>
-                    {this.state.filialData.map(filial => (
-                        <tr key={filial.id}>
-                            <td>{filial.id}</td>
-                            <td>{filial.name}</td>
-                            <td>{filial.city}</td>
-                            <td>{filial.street}</td>
-                            <td>{filial.workplaces}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
-
-                <></>
+                <div className={"table-container"}>
+                    <table className={"table"}>
+                        <thead className={"thead"}>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Street</th>
+                        <th>Workplaces</th>
+                        </thead>
+                        <tbody>
+                        {this.state.filialData.map(filial => (
+                            <tr key={filial.id}>
+                                <td>{filial.id}</td>
+                                <td>{filial.name}</td>
+                                <td>{filial.city}</td>
+                                <td>{filial.street}</td>
+                                <td>{filial.workplaces}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                    <Input/>
+                </div>
             </div>
         )
     }
