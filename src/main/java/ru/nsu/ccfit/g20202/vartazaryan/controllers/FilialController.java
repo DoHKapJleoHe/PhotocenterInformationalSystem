@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
+import ru.nsu.ccfit.g20202.vartazaryan.mappers.FilialMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.FilialService;
 
 import java.util.List;
@@ -16,20 +17,22 @@ public class FilialController
 {
     @Autowired
     private FilialService filialService;
+    private final FilialMapper filialMapper = new FilialMapper();
 
     @GetMapping
-    public List<Filial> getFilials()
+    public List<FilialDTO> getFilials()
     {
         System.out.println("Got GET request!");
-        return filialService.getAllFilials();
+        var filials = filialService.getAllFilials();
+
+        return filials.stream().map(filialMapper::toDTO).toList();
     }
 
     @GetMapping("/{id}")
-    public Filial getFilialById(@PathVariable Long id)
+    public FilialDTO getFilialById(@PathVariable Long id)
     {
         Optional<Filial> filial = filialService.getFilialById(id);
-        System.out.println("Hi");
-        return filial.get();
+        return filialMapper.toDTO(filial.get());
     }
 
     @PutMapping

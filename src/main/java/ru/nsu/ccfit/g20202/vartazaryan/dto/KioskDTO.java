@@ -7,4 +7,5 @@ public class KioskDTO
 {
     private Long number;
     private Long workplaces;
+    private Long filialId;
 }

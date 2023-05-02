@@ -2,6 +2,8 @@ package ru.nsu.ccfit.g20202.vartazaryan.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class FilialDTO
 {
@@ -9,4 +11,5 @@ public class FilialDTO
     private String city;
     private String street;
     private Long workplaces;
+    List<KioskDTO> kiosks;
 }
