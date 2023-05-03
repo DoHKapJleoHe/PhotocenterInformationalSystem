@@ -22,6 +22,6 @@ public class Filial
     private String street;
     private Long workplaces;
 
-    @OneToMany
+    @OneToMany(mappedBy = "filial")
     private List<Kiosk> kiosks;
 }

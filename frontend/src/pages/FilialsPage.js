@@ -3,13 +3,15 @@ import axios from "axios";
 import Input from "../components/Input";
 
 const FILIALS = 'http://localhost:8080/filials';
+const KIOSKS = 'http://localhost:8080/kiosks/kf';
 
 class FilialsPage extends React.Component
 {
     constructor(props) {
         super(props);
         this.state = {
-            filialData: []
+            filialData: [],
+            kioskData: []
         }
     }
 
@@ -20,6 +22,17 @@ class FilialsPage extends React.Component
         }).catch(error => {
                 console.error(error);
             });
+    }
+
+    onRowClick(id)
+    {
+        let path = KIOSKS+'/'+id;
+        axios.get(path).then(response => {
+            console.log(response.data);
+            this.setState({kioskData: response.data});
+        }).catch(error => {
+            console.error(error);
+        });
     }
 
     render() {
@@ -37,7 +50,7 @@ class FilialsPage extends React.Component
                         </thead>
                         <tbody>
                         {this.state.filialData.map(filial => (
-                            <tr key={filial.id}>
+                            <tr key={filial.id} onClick={() => this.onRowClick(filial.id)}>
                                 <td>{filial.id}</td>
                                 <td>{filial.name}</td>
                                 <td>{filial.city}</td>
@@ -48,6 +61,24 @@ class FilialsPage extends React.Component
                         </tbody>
                     </table>
                     <Input/>
+                    <table className={"kiosk-table"}>
+                        <thead className={"kiosk-thead"}>
+                        <th>ID</th>
+                        <th>Number</th>
+                        <th>Workplaces</th>
+                        <th>FilialID</th>
+                        </thead>
+                        <tbody>
+                        {this.state.kioskData.map(kiosk => (
+                            <tr key={kiosk.id}>
+                                <td>{kiosk.id}</td>
+                                <td>{kiosk.number}</td>
+                                <td>{kiosk.workplaces}</td>
+                                <td>{kiosk.filialId}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         )

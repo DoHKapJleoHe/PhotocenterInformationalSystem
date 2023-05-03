@@ -28,13 +28,17 @@ class KiosksPage extends React.Component
                 <table>
                     <thead>
                     <th>ID</th>
+                    <th>Number</th>
                     <th>Workplaces</th>
+                    <th>FilialID</th>
                     </thead>
                     <tbody>
                     {this.state.kioskData.map(kiosk => (
                         <tr key={kiosk.id}>
                             <td>{kiosk.id}</td>
+                            <td>{kiosk.number}</td>
                             <td>{kiosk.workplaces}</td>
+                            <td>{kiosk.filialId}</td>
                         </tr>
                     ))}
                     </tbody>

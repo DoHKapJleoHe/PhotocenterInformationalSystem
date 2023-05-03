@@ -5,9 +5,10 @@ import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
 
 public class KioskMapper
 {
-    public KioskDTO toDTO(Kiosk kiosk)
+    public static KioskDTO toDTO(Kiosk kiosk)
     {
         KioskDTO kioskDTO = new KioskDTO();
+        kioskDTO.setId(kiosk.getId());
         kioskDTO.setNumber(kiosk.getKioskNumber());
         kioskDTO.setWorkplaces(kiosk.getWorkplaces());
         kioskDTO.setFilialId(kiosk.getFilial().getId());

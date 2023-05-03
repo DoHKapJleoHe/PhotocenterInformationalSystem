@@ -27,7 +27,21 @@ th, td {
 }
 
 tbody td:hover {
+    border-spacing: 0;
+    border-collapse: collapse;
     background-color: #5b5b58;
     cursor: pointer;
+}
+
+.kiosk-table{
+    color: white;
+    position: absolute;
+}
+
+.kiosk-thead{
+    background-color: #e9ecef;
+    border-top: solid 2px #dee2e6;
+    border-bottom: solid 2px #dee2e6;
+    color: #212529;
 }
 

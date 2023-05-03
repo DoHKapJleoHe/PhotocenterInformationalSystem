@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class KioskDTO
 {
+    private Long id;
     private Long number;
     private Long workplaces;
     private Long filialId;

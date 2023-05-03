@@ -7,6 +7,7 @@ import java.util.List;
 @Data
 public class FilialDTO
 {
+    private Long id;
     private String name;
     private String city;
     private String street;

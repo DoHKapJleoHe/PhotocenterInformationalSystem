@@ -17,7 +17,6 @@ public class FilialController
 {
     @Autowired
     private FilialService filialService;
-    private final FilialMapper filialMapper = new FilialMapper();
 
     @GetMapping
     public List<FilialDTO> getFilials()
@@ -25,14 +24,14 @@ public class FilialController
         System.out.println("Got GET request!");
         var filials = filialService.getAllFilials();
 
-        return filials.stream().map(filialMapper::toDTO).toList();
+        return filials.stream().map(FilialMapper::toDTO).toList();
     }
 
     @GetMapping("/{id}")
     public FilialDTO getFilialById(@PathVariable Long id)
     {
         Optional<Filial> filial = filialService.getFilialById(id);
-        return filialMapper.toDTO(filial.get());
+        return FilialMapper.toDTO(filial.get());
     }
 
     @PutMapping
