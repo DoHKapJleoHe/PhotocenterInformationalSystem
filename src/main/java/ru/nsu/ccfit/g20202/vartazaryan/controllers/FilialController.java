@@ -10,6 +10,8 @@ import ru.nsu.ccfit.g20202.vartazaryan.service.FilialService;
 import java.util.List;
 import java.util.Optional;
 
+//  GET http://localhost:8080/filials
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/filials")
@@ -49,7 +51,7 @@ public class FilialController
     @PostMapping()
     public void create(@RequestBody FilialDTO dto)
     {
-        System.out.println("Got POST request!");
+        System.out.println("Got POST request in filial controller!");
         filialService.createFilial(dto);
     }
 }

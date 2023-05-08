@@ -21,10 +21,10 @@ public class Client
     private String name;
     private String surname;
     private String type;
-    private String discount_card;
+    private String discountCard;
 
-    @OneToMany
+    @OneToMany(mappedBy = "client")
     private List<PrintingOrder> printingOrders;
-    @OneToMany
+    @OneToMany(mappedBy = "client")
     private List<FilmingOrder> filmingOrders;
 }

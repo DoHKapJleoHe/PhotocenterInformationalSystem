@@ -1,10 +1,14 @@
 package ru.nsu.ccfit.g20202.vartazaryan.dto;
 
-// what date should i use: java.util oa java.sql ??
+
+import lombok.Data;
+
 import java.util.Date;
 
+@Data
 public class PrintingOrderDTO
 {
+    private Long id;
     private int numPhotos;
     private int numPhotosPerFrame;
     private String format;
@@ -12,5 +16,6 @@ public class PrintingOrderDTO
     private String urgency;
     private double price;
     private Date date;
-    private String done;
+    private String clientName;
+    private Long clientId;
 }

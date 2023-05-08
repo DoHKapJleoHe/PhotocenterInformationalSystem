@@ -25,12 +25,12 @@ class KiosksPage extends React.Component
     render() {
         return(<div>
                 <h2>Киоски</h2>
-                <table>
-                    <thead>
+                <table className={"table"}>
+                    <thead className={"thead"}>
                     <th>ID</th>
-                    <th>Number</th>
-                    <th>Workplaces</th>
-                    <th>FilialID</th>
+                    <th>Номер</th>
+                    <th>Раб. места</th>
+                    <th>ID филиала</th>
                     </thead>
                     <tbody>
                     {this.state.kioskData.map(kiosk => (

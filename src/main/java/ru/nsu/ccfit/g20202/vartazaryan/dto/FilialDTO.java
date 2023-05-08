@@ -12,5 +12,4 @@ public class FilialDTO
     private String city;
     private String street;
     private Long workplaces;
-    List<KioskDTO> kiosks;
 }

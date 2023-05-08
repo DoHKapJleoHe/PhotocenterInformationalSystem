@@ -43,10 +43,10 @@ class FilialsPage extends React.Component
                     <table className={"table"}>
                         <thead className={"thead"}>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>City</th>
-                        <th>Street</th>
-                        <th>Workplaces</th>
+                        <th>Название</th>
+                        <th>Город</th>
+                        <th>Улица</th>
+                        <th>Раб. Мест</th>
                         </thead>
                         <tbody>
                         {this.state.filialData.map(filial => (
@@ -61,12 +61,12 @@ class FilialsPage extends React.Component
                         </tbody>
                     </table>
                     <Input/>
-                    <table className={"kiosk-table"}>
-                        <thead className={"kiosk-thead"}>
+                    <table className={"sub-table"}>
+                        <thead className={"sub-thead"}>
                         <th>ID</th>
-                        <th>Number</th>
-                        <th>Workplaces</th>
-                        <th>FilialID</th>
+                        <th>Номер</th>
+                        <th>Раб. мест</th>
+                        <th>ID филиала</th>
                         </thead>
                         <tbody>
                         {this.state.kioskData.map(kiosk => (

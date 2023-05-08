@@ -7,7 +7,7 @@ import './css/main.css'
 import './css/Button.css'
 import './css/Header.css'
 import './css/Input.css'
-import './css/Tabel.css'
+import './css/Table.css'
 import './css/Link.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))

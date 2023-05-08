@@ -8,13 +8,11 @@ public class FilialMapper
     public static FilialDTO toDTO(Filial filial)
     {
         FilialDTO filialDTO = new FilialDTO();
-        System.out.println(filial.getId());
         filialDTO.setId(filial.getId());
         filialDTO.setName(filial.getName());
         filialDTO.setCity(filial.getCity());
         filialDTO.setStreet(filial.getStreet());
         filialDTO.setWorkplaces(filial.getWorkplaces());
-        filialDTO.setKiosks(filial.getKiosks().stream().map(KioskMapper::toDTO).toList());
 
         return filialDTO;
     }

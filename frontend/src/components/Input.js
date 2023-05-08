@@ -3,7 +3,7 @@ import axios from "axios";
 
 const FILIALS = 'http://localhost:8080/filials';
 
-let Input = (props, state) => {
+let Input = () => {
         const [data, setData] = useState({
             name: "",
             city: "",

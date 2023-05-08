@@ -1,18 +1,24 @@
 package ru.nsu.ccfit.g20202.vartazaryan.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class FilmingOrder
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private Client client;
     private double price;
     private String urgency;
 
+    @ManyToOne(optional = false)
+    private Client client;
 }

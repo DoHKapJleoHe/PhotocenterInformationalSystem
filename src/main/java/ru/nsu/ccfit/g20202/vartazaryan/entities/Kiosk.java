@@ -19,7 +19,6 @@ public class Kiosk
     private Long kioskNumber;
     private Long workplaces;
 
-    @ManyToOne
-    @JoinColumn(name = "filial_id")
+    @ManyToOne(optional = false)
     private Filial filial;
 }

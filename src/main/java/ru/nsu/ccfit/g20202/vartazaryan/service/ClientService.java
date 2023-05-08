@@ -22,7 +22,7 @@ public class ClientService
                 .name(clientDTO.getName())
                 .surname(clientDTO.getSurname())
                 .type(clientDTO.getType())
-                .discount_card(clientDTO.getDiscountCard())
+                .discountCard(clientDTO.getDiscountCard())
                 .build();
 
         return clientRepository.save(newClient);
@@ -41,5 +41,10 @@ public class ClientService
     public List<Client> getAllClients()
     {
         return clientRepository.findAll();
+    }
+
+    public void deleteUserById(Long id)
+    {
+        clientRepository.deleteById(id);
     }
 }
