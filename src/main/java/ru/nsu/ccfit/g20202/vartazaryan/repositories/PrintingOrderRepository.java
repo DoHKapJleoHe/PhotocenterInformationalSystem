@@ -5,11 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.PrintingOrder;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface PrintingOrderRepository extends JpaRepository<PrintingOrder, Long>
 {
-    @Query("")
-    List<PrintingOrder> getOrdersByClientId(int id);
+    List<PrintingOrder> findPrintingOrderByDateBetween(Date date, Date date2);
 }

@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.PrintingOrderDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.PrintingOrder;
+import ru.nsu.ccfit.g20202.vartazaryan.mappers.PrintingOrderMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.ClientRepository;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.PrintingOrderRepository;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,8 +29,7 @@ public class PrintingOrderService
         return printingRepository.findAll();
     }
 
-    public void createOrder(PrintingOrderDTO dto)
-    {
+    public void createOrder(PrintingOrderDTO dto) throws ParseException {
         PrintingOrder printingOrder = PrintingOrder.builder()
                 .numPhotos(dto.getNumPhotos())
                 .numPhotosPerFrame(dto.getNumPhotosPerFrame())
@@ -35,10 +37,18 @@ public class PrintingOrderService
                 .paperType(dto.getPaperType())
                 .urgency(dto.getUrgency())
                 .price(dto.getPrice())
-                .date(dto.getDate())
+                .date(PrintingOrderMapper.convertStringToDate(dto.getDate()))
                 .client(clientRepository.findById(dto.getClientId()).get())
                 .build();
 
         printingRepository.save(printingOrder);
+    }
+
+    public List<PrintingOrder> getOrdersByDate(String dateFrom, String dateTo) throws ParseException {
+
+        Date date1 = PrintingOrderMapper.convertStringToDate(dateFrom);
+        Date date2 = PrintingOrderMapper.convertStringToDate(dateTo);
+
+        return printingRepository.findPrintingOrderByDateBetween(date1, date2);
     }
 }

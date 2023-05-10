@@ -18,14 +18,23 @@ class OrdersPage extends React.Component
 
     filterData()
     {
-        axios.get(PRINT, {
+        axios.get(PRINT+'/'+'time', {
             params:{
-                dateFrom: date.dateFrom,
-                dateTo: date.dateTo
+                dateFrom: this.state.dateFrom,
+                dateTo: this.state.dateTo
             }
         }).then(response => {
-            this.state({printingData: response.data})
+            this.setState({printingData: response.data})
         })
+    }
+
+    handleDate = (event) => {
+        const {target} = event;
+        const {name, value} = target;
+
+        this.setState({
+            [name]: value
+        });
     }
 
     componentDidMount() {
@@ -104,8 +113,8 @@ class OrdersPage extends React.Component
             </div>
 
             <button className={"filter-button"} onClick={() => this.filterData()}>Find</button>
-            <input placeholder={"Дата-От"} className={"date-from"} name={"dateFrom"} value={date.dateFrom} onChange={handleDate}></input>
-            <input placeholder={"Дата-до"} className={"date-to"} name={"dateTo"} value={date.dateTo} onChange={handleDate}></input>
+            <input placeholder={"Дата-От"} className={"date-from"} name={"dateFrom"} value={this.state.dateFrom} onChange={this.handleDate}></input>
+            <input placeholder={"Дата-до"} className={"date-to"} name={"dateTo"} value={this.state.dateTo} onChange={this.handleDate}></input>
         </div>
 
     }

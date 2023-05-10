@@ -6,6 +6,7 @@ import ru.nsu.ccfit.g20202.vartazaryan.dto.PrintingOrderDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.PrintingOrderMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.PrintingOrderService;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -24,9 +25,18 @@ public class PrintingController
         return orders.stream().map(PrintingOrderMapper::toDTO).toList();
     }
 
+
+    @GetMapping("/time")
+    public List<PrintingOrderDTO> getOrdersByTime(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) throws ParseException {
+        System.out.println(dateFrom+" "+dateTo);
+
+        var orders = printingService.getOrdersByDate(dateFrom, dateTo);
+
+        return orders.stream().map(PrintingOrderMapper::toDTO).toList();
+    }
+
     @PostMapping
-    public void createOrder(@RequestBody PrintingOrderDTO dto)
-    {
+    public void createOrder(@RequestBody PrintingOrderDTO dto) throws ParseException {
         System.out.println("Got printing request");
         printingService.createOrder(dto);
     }
