@@ -3,7 +3,9 @@ package ru.nsu.ccfit.g20202.vartazaryan.dto;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.Locale;
 
 @Data
 public class PrintingOrderDTO
@@ -15,7 +17,7 @@ public class PrintingOrderDTO
     private String paperType;
     private String urgency;
     private double price;
-    private Date date;
+    private LocalDate date;
     private String clientName;
     private Long clientId;
 }

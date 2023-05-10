@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -24,7 +24,7 @@ public class PrintingOrder
     private String paperType;
     private String urgency;
     private double price;
-    private Date date;
+    private LocalDate date;
 
     @ManyToOne(optional = false)
     private Client client;

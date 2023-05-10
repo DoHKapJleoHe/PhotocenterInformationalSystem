@@ -38,5 +38,7 @@ public class PrintingOrderService
                 .date(dto.getDate())
                 .client(clientRepository.findById(dto.getClientId()).get())
                 .build();
+
+        printingRepository.save(printingOrder);
     }
 }

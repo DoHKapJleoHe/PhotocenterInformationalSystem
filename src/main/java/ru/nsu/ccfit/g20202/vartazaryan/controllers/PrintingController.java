@@ -9,7 +9,8 @@ import ru.nsu.ccfit.g20202.vartazaryan.service.PrintingOrderService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/printing_orders")
+@CrossOrigin(origins = "*")
+@RequestMapping("/printing-orders")
 public class PrintingController
 {
     @Autowired
@@ -26,6 +27,7 @@ public class PrintingController
     @PostMapping
     public void createOrder(@RequestBody PrintingOrderDTO dto)
     {
+        System.out.println("Got printing request");
         printingService.createOrder(dto);
     }
 }

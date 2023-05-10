@@ -9,6 +9,7 @@ import './css/Header.css'
 import './css/Input.css'
 import './css/Table.css'
 import './css/Link.css'
+import './css/OrdersFilter.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))
 app.render(

@@ -1,17 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import axios from "axios";
 
-const PRINT = 'http://localhost:8080/printing_orders';
-const FILM = 'http://localhost:8080/filming_orders';
+const PRINT = 'http://localhost:8080/printing-orders';
+const FILM = 'http://localhost:8080/filming-orders';
 
 class OrdersPage extends React.Component
 {
     constructor(props) {
         super(props);
         this.state = {
+            dateFrom: "",
+            dateTo: "",
             printingData: [],
             filmingData: []
         }
+    }
+
+    filterData()
+    {
+        axios.get(PRINT, {
+            params:{
+                dateFrom: date.dateFrom,
+                dateTo: date.dateTo
+            }
+        }).then(response => {
+            this.state({printingData: response.data})
+        })
     }
 
     componentDidMount() {
@@ -88,7 +102,12 @@ class OrdersPage extends React.Component
                     </tbody>
                 </table>
             </div>
+
+            <button className={"filter-button"} onClick={() => this.filterData()}>Find</button>
+            <input placeholder={"Дата-От"} className={"date-from"} name={"dateFrom"} value={date.dateFrom} onChange={handleDate}></input>
+            <input placeholder={"Дата-до"} className={"date-to"} name={"dateTo"} value={date.dateTo} onChange={handleDate}></input>
         </div>
+
     }
 }
 

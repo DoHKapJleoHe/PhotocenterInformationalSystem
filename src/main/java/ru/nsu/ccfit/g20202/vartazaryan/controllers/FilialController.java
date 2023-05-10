@@ -10,8 +10,6 @@ import ru.nsu.ccfit.g20202.vartazaryan.service.FilialService;
 import java.util.List;
 import java.util.Optional;
 
-//  GET http://localhost:8080/filials
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/filials")
