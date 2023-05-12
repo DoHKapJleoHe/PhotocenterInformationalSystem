@@ -50,6 +50,7 @@ class ClientsPage extends React.Component
             </div>
 
             <div className={"table-container1"}>
+                <h2>Заказы на печать</h2>
                 <table className={"sub-table1"}>
                     <thead className={"sub-thead"}>
                     <th>ID</th>
@@ -81,6 +82,7 @@ class ClientsPage extends React.Component
             </div>
 
             <div className={"table-container2"}>
+                <h2>Заказы на проявку</h2>
                 <table className={"sub-table2"}>
                     <thead className={"sub-thead"}>
                     <th>ID</th>

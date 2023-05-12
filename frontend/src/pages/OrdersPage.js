@@ -12,7 +12,9 @@ class OrdersPage extends React.Component
             dateFrom: "",
             dateTo: "",
             printingData: [],
-            filmingData: []
+            filmingData: [],
+            price_printing: 0,
+            price_filming: 0
         }
     }
 
@@ -26,6 +28,8 @@ class OrdersPage extends React.Component
         }).then(response => {
             this.setState({printingData: response.data})
         })
+
+        this.getFullPrice()
     }
 
     handleDate = (event) => {
@@ -37,9 +41,18 @@ class OrdersPage extends React.Component
         });
     }
 
+    getFullPrice()
+    {
+        const result = this.state.printingData.reduce((sum, order) => sum +=order.price, 0);
+        this.setState({price_printing: result})
+    }
+
+    // Problem with total price: when using filter the price changes only if i double-click find-button
     componentDidMount() {
         axios.get(PRINT).then(order => {
-            this.setState({printingData: order.data})
+            this.setState({printingData: order.data}, () => {
+                this.getFullPrice()
+            })
         }).catch(error => {
             console.error(error)
         })
@@ -55,6 +68,7 @@ class OrdersPage extends React.Component
         return <div>
             <h2>Заказы</h2>
             <div className={"table-container"}>
+                <h2>Заказы на печать</h2>
                 <table className={"table"}>
                     <thead className={"thead"}>
                     <th>ID</th>
@@ -88,6 +102,7 @@ class OrdersPage extends React.Component
             </div>
 
             <div className={"table-container1"}>
+                <h2>Заказы на проявку</h2>
                 <table className={"sub-table1"}>
                     <thead className={"sub-thead"}>
                     <th>ID</th>
@@ -110,6 +125,11 @@ class OrdersPage extends React.Component
                     ))}
                     </tbody>
                 </table>
+            </div>
+
+            <div>
+                <text className={"price"}>Общая выручка: </text>
+                <text className={"price-value"}>{this.state.price_printing}</text>
             </div>
 
             <button className={"filter-button"} onClick={() => this.filterData()}>Find</button>

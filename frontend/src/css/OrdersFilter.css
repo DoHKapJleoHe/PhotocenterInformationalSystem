@@ -16,3 +16,15 @@
     top: 25%;
     left: 75%;
 }
+
+.price{
+    position: fixed;
+    margin-left: 950px;
+    top: 510px;
+}
+
+.price-value{
+    position: fixed;
+    margin-left: 1090px;
+    top: 510px;
+}

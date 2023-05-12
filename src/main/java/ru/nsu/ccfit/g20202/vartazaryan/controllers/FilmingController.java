@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/filming-order")
+@RequestMapping("/filming-orders")
 public class FilmingController
 {
     @Autowired
