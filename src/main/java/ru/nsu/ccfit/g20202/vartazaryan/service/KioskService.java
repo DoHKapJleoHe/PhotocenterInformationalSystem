@@ -44,6 +44,7 @@ public class KioskService
     public void createKiosk(KioskDTO dto)
     {
         var filial = filialRepository.findById(dto.getFilialId());
+
         //Make check if filial_id is incorrect
         Kiosk kiosk = Kiosk.builder()
                 .kioskNumber(dto.getNumber())

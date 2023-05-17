@@ -6,6 +6,7 @@ import ru.nsu.ccfit.g20202.vartazaryan.dto.FilmingOrderDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.FilmingOrderMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.FilmingOrderService;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class FilmingController
     }
 
     @PostMapping
-    public void createOrder(@RequestBody FilmingOrderDTO dto)
+    public void createOrder(@RequestBody FilmingOrderDTO dto) throws ParseException
     {
         filmingOrderService.createOrder(dto);
     }

@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 
 const PRINT = 'http://localhost:8080/printing-orders';
@@ -26,19 +28,11 @@ class OrdersPage extends React.Component
                 dateTo: this.state.dateTo
             }
         }).then(response => {
-            this.setState({printingData: response.data})
+            this.setState({printingData: response.data}, () => {
+                this.getFullPrice()
+            })
         })
 
-        this.getFullPrice()
-    }
-
-    handleDate = (event) => {
-        const {target} = event;
-        const {name, value} = target;
-
-        this.setState({
-            [name]: value
-        });
     }
 
     getFullPrice()
@@ -133,8 +127,38 @@ class OrdersPage extends React.Component
             </div>
 
             <button className={"filter-button"} onClick={() => this.filterData()}>Find</button>
-            <input placeholder={"Дата-От"} className={"date-from"} name={"dateFrom"} value={this.state.dateFrom} onChange={this.handleDate}></input>
-            <input placeholder={"Дата-до"} className={"date-to"} name={"dateTo"} value={this.state.dateTo} onChange={this.handleDate}></input>
+            <DatePicker
+                selected={this.state.dateFrom}
+                onChange={date => this.setState({ dateFrom: date })}
+                dateFormat="yyyy-MM-dd"
+                className={"date-from"}
+                showYearDropdown
+                scrollableYearDropdown
+                yearDropdownItemNumber={15}
+                placeholderText="Выберите дату"
+                popperModifiers={{
+                    preventOverflow: {
+                        enabled: true
+                    }
+                }}
+            />
+
+            <DatePicker
+                selected={this.state.dateTo}
+                onChange={date => this.setState({ dateTo: date })}
+                dateFormat="yyyy-MM-dd"
+                className={"date-to"}
+                showYearDropdown
+                placement={"topRight"}
+                scrollableYearDropdown
+                yearDropdownItemNumber={15}
+                placeholderText="Выберите дату"
+                popperModifiers={{
+                    preventOverflow: {
+                        enabled: true
+                    }
+                }}
+            />
         </div>
 
     }

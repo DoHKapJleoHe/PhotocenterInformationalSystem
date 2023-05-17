@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 
 const CLIENTS = 'http://localhost:8080/clients';
-
+const PRINTING_ORDER = 'http://localhost:8080/printing-orders'
 
 class ClientsPage extends React.Component
 {
@@ -23,6 +23,16 @@ class ClientsPage extends React.Component
         })
     }
 
+    onRowClick(id)
+    {
+        let PATH = PRINTING_ORDER+'/'+id;
+        axios.get(PATH).then(response => {
+            this.setState({printingData:response.data})
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
     render() {
         return <div>
             <h2>Клиенты</h2>
@@ -37,7 +47,7 @@ class ClientsPage extends React.Component
                     </thead>
                     <tbody>
                     {this.state.clientData.map(client => (
-                        <tr key={client.id}>
+                        <tr key={client.id} onClick={() => this.onRowClick(client.id)}>
                             <td>{client.id}</td>
                             <td>{client.name}</td>
                             <td>{client.surname}</td>
@@ -73,8 +83,6 @@ class ClientsPage extends React.Component
                             <td>{order.urgency}</td>
                             <td>{order.price}</td>
                             <td>{order.date}</td>
-                            <td>{order.clientName}</td>
-                            <td>{order.clientId}</td>
                         </tr>
                     ))}
                     </tbody>

@@ -8,6 +8,7 @@ public class FilmingOrderDTO
     private Long id;
     private double price;
     private String urgency;
+    private String date;
     private String clientName;
     private Long clientId;
 }

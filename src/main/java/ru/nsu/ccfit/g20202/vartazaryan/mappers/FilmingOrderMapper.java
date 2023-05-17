@@ -3,6 +3,10 @@ package ru.nsu.ccfit.g20202.vartazaryan.mappers;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilmingOrderDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.FilmingOrder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FilmingOrderMapper
 {
     public static FilmingOrderDTO toDTO(FilmingOrder order)
@@ -15,5 +19,20 @@ public class FilmingOrderMapper
         dto.setClientId(order.getClient().getId());
 
         return dto;
+    }
+
+    public static String convertDateToString(Date date)
+    {
+        //2023-03-13
+        String str = date.toString().substring(0, 10);
+        return str;
+    }
+
+    public static Date fromStringToDate(String date) throws ParseException
+    {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date newDate = format.parse(date);
+
+        return newDate;
     }
 }

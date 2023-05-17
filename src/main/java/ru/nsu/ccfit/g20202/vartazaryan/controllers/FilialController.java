@@ -35,7 +35,7 @@ public class FilialController
     }
 
     @PutMapping
-    public void update()
+    public void update(@RequestBody FilialDTO dto)
     {
 
     }

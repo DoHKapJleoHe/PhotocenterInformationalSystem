@@ -19,9 +19,9 @@ public class PrintingOrderService
     private PrintingOrderRepository printingRepository;
     private ClientRepository clientRepository;
 
-    public List<PrintingOrder> getOrdersByClientId(int id)
+    public List<PrintingOrder> getOrdersByClientId(Long id)
     {
-        return null;
+        return printingRepository.findPrintingOrderByClientId(id);
     }
 
     public List<PrintingOrder> getAllOrders()
@@ -44,11 +44,18 @@ public class PrintingOrderService
         printingRepository.save(printingOrder);
     }
 
-    public List<PrintingOrder> getOrdersByDate(String dateFrom, String dateTo) throws ParseException {
+    public List<PrintingOrder> getOrdersByDate(String dateFrom, String dateTo) throws ParseException
+    {
+        if(dateFrom.equals("") || dateTo.equals(""))
+        {
+            return printingRepository.findAll();
+        }
+        else
+        {
+            Date date1 = PrintingOrderMapper.convertStringToDate(dateFrom);
+            Date date2 = PrintingOrderMapper.convertStringToDate(dateTo);
 
-        Date date1 = PrintingOrderMapper.convertStringToDate(dateFrom);
-        Date date2 = PrintingOrderMapper.convertStringToDate(dateTo);
-
-        return printingRepository.findPrintingOrderByDateBetween(date1, date2);
+            return printingRepository.findPrintingOrderByDateBetween(date1, date2);
+        }
     }
 }

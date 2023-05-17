@@ -25,6 +25,13 @@ public class PrintingController
         return orders.stream().map(PrintingOrderMapper::toDTO).toList();
     }
 
+    @GetMapping("/{id}")
+    public List<PrintingOrderDTO> getOrderByClientId(@PathVariable Long id)
+    {
+        var orders = printingService.getOrdersByClientId(id);
+
+        return orders.stream().map(PrintingOrderMapper::toDTO).toList();
+    }
 
     @GetMapping("/time")
     public List<PrintingOrderDTO> getOrdersByTime(@RequestParam("dateFrom") String dateFrom, @RequestParam("dateTo") String dateTo) throws ParseException {

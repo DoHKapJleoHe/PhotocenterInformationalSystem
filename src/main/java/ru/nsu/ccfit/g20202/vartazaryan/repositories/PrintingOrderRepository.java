@@ -12,4 +12,5 @@ import java.util.List;
 public interface PrintingOrderRepository extends JpaRepository<PrintingOrder, Long>
 {
     List<PrintingOrder> findPrintingOrderByDateBetween(Date date, Date date2);
+    List<PrintingOrder> findPrintingOrderByClientId(Long id);
 }
