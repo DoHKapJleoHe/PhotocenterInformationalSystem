@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @Builder
@@ -21,4 +23,7 @@ public class Kiosk
 
     @ManyToOne(optional = false)
     private Filial filial;
+
+    @OneToMany(mappedBy = "kiosk")
+    private List<KioskResource> resources;
 }

@@ -97,8 +97,6 @@ class ClientsPage extends React.Component
                     <th>Цена</th>
                     <th>Срочность</th>
                     <th>Дата</th>
-                    <th>Имя клиента</th>
-                    <th>ID клиента</th>
                     </thead>
                     <tbody>
 

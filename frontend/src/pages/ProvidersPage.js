@@ -1,8 +1,6 @@
 import React from "react";
 import axios from "axios";
 
-
-
 class ProvidersPage extends React.Component
 {
    constructor(props)
@@ -15,9 +13,10 @@ class ProvidersPage extends React.Component
 
    componentDidMount()
    {
+
    }
 
-    render()
+   render()
    {
        return <div>
            <h2>Поставщики</h2>
@@ -26,6 +25,8 @@ class ProvidersPage extends React.Component
                     <thead className={"thead"}>
                     <th>ID</th>
                     <th>Название</th>
+                    <th>Адрес</th>
+                    <th>Телефон</th>
                     </thead>
                </table>
            </div>

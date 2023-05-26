@@ -10,6 +10,8 @@ import './css/Input.css'
 import './css/Table.css'
 import './css/Link.css'
 import './css/OrdersFilter.css'
+import './css/NewOrder.css'
+import './css/NewKiosk.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))
 app.render(

@@ -1,0 +1,59 @@
+.select{
+    width: 200px;
+    height: 38px;
+    font-size: 16px;
+    color: black;
+    background-color: white;
+}
+
+.date{
+    width: 193px;
+    height: 33px;
+}
+
+.makeOrder{
+    width: 200px;
+    height: 33px;
+}
+
+.orderInput{
+    width: 193px;
+    height: 33px;
+    display: block;
+}
+
+.resource{
+    position: fixed;
+    margin-left: 200px;
+    top: 150px;
+}
+
+.resource1{
+    position: fixed;
+    margin-left: 200px;
+    top: 175px;
+}
+
+.resource2{
+    position: fixed;
+    margin-left: 200px;
+    top: 200px;
+}
+
+.resource-value{
+    position: fixed;
+    margin-left: 280px;
+    top: 150px;
+}
+
+.resource1-value{
+    position: fixed;
+    margin-left: 280px;
+    top: 175px;
+}
+
+.resource2-value{
+    position: fixed;
+    margin-left: 280px;
+    top: 200px;
+}

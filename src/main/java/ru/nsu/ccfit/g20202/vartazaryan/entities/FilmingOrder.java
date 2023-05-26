@@ -21,6 +21,7 @@ public class FilmingOrder
     private double price;
     private String urgency;
     private Date date;
+    private int kioskNumber;
 
     @ManyToOne(optional = false)
     private Client client;

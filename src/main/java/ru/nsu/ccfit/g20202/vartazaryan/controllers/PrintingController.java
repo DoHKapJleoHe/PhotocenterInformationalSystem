@@ -44,7 +44,6 @@ public class PrintingController
 
     @PostMapping
     public void createOrder(@RequestBody PrintingOrderDTO dto) throws ParseException {
-        System.out.println("Got printing request");
         printingService.createOrder(dto);
     }
 }

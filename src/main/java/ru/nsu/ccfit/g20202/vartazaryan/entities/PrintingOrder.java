@@ -16,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 public class PrintingOrder
 {
+    //Наверное стоит добавить поле киоск, в котором был сделан заказ
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +27,7 @@ public class PrintingOrder
     private String urgency;
     private double price;
     private Date date;
+    private int kioskNumber;
 
     @ManyToOne(optional = false)
     private Client client;

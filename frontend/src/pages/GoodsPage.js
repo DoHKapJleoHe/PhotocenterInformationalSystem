@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-class GoodsPage
+class GoodsPage extends React.Component
 {
     render()
     {

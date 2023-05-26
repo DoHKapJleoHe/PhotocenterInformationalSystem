@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import {Route, Routes, Link} from "react-router-dom";
 
 const KIOSKS = 'http://localhost:8080/kiosks';
 
@@ -24,6 +25,8 @@ class KiosksPage extends React.Component
 
     render() {
         return(<div>
+                <Link to={"/new-kiosk"} className={"link"}>Добавить киоск</Link>
+
                 <h2>Киоски</h2>
                 <div className={"table-container"}>
                     <table className={"table"}>

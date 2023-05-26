@@ -2,12 +2,16 @@ import React from "react";
 import {Route, Routes, Link} from "react-router-dom";
 
 import Header from "./components/Header";
-import FilialsPage from "./pages/FilialsPage"
-import KiosksPage from "./pages/KiosksPage";
+import FilialsPage from "./pages/filial/FilialsPage"
+import KiosksPage from "./pages/kiosk/KiosksPage";
 import ClientsPage from "./pages/ClientsPage";
 import OrdersPage from "./pages/OrdersPage";
 import ProvidersPage from "./pages/ProvidersPage";
 import GoodsPage from "./pages/GoodsPage";
+import NewOrderPage from "./pages/NewOrderPage";
+import NewKioskPage from "./pages/kiosk/NewKioskPage";
+import NewFilialPage from "./pages/filial/NewFilialPage";
+
 
 class App extends React.Component
 {
@@ -22,6 +26,7 @@ class App extends React.Component
                     <Link to={"/orders"} className={"link"}>Заказы</Link>
                     <Link to={"/providers"} className={"link"}>Поставщики</Link>
                     <Link to={"/goods"} className={"link"}>Товары</Link>
+                    <Link to={"/new-order"} className={"link"}>Сделать заказ</Link>
                 </p>
 
                 <Routes>
@@ -31,6 +36,9 @@ class App extends React.Component
                     <Route path={"/orders"} element={<OrdersPage/>}/>
                     <Route path={"/providers"} element={<ProvidersPage/>}/>
                     <Route path={"/goods"} element={<GoodsPage/>}></Route>
+                    <Route path={"/new-order"} element={<NewOrderPage/>}></Route>
+                    <Route path={"/new-kiosk"} element={<NewKioskPage/>}></Route>
+                    <Route path={"/new-filial"} element={<NewFilialPage/>}></Route>
                 </Routes>
             </div>)
     }

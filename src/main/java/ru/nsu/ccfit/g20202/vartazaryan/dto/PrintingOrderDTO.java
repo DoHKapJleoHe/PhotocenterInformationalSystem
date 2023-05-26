@@ -16,6 +16,7 @@ public class PrintingOrderDTO
     private String urgency;
     private double price;
     private String date;
+    private int kioskNumber;
     private String clientName;
     private Long clientId;
 }

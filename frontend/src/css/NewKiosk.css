@@ -1,0 +1,17 @@
+.inputNumber{
+    display: block;
+    height: 25px;
+    width: 193px;
+}
+
+.inputWorkplaces{
+    display: block;
+    height: 25px;
+    width: 193px;
+}
+
+.addButton{
+    margin-top: 10px;
+    height: 25px;
+    width: 200px;
+}

@@ -41,7 +41,6 @@ class OrdersPage extends React.Component
         this.setState({price_printing: result})
     }
 
-    // Problem with total price: when using filter the price changes only if i double-click find-button
     componentDidMount() {
         axios.get(PRINT).then(order => {
             this.setState({printingData: order.data}, () => {
@@ -136,6 +135,7 @@ class OrdersPage extends React.Component
                 scrollableYearDropdown
                 yearDropdownItemNumber={15}
                 placeholderText="Выберите дату"
+                popperPlacement="bottom-start"
                 popperModifiers={{
                     preventOverflow: {
                         enabled: true
@@ -153,6 +153,7 @@ class OrdersPage extends React.Component
                 scrollableYearDropdown
                 yearDropdownItemNumber={15}
                 placeholderText="Выберите дату"
+                popperPlacement="bottom-start"
                 popperModifiers={{
                     preventOverflow: {
                         enabled: true

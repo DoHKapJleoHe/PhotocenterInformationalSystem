@@ -22,6 +22,7 @@ public class Client
     private String surname;
     private String type;
     private String discountCard;
+    private String phoneNumber;
 
     @OneToMany(mappedBy = "client")
     private List<PrintingOrder> printingOrders;

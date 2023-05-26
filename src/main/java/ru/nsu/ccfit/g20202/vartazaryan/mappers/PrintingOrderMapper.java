@@ -20,6 +20,7 @@ public class PrintingOrderMapper
         dto.setUrgency(printingOrder.getUrgency());
         dto.setPrice(printingOrder.getPrice());
         dto.setDate(convertDateToString(printingOrder.getDate()));
+        dto.setKioskNumber(printingOrder.getKioskNumber());
         dto.setClientName(printingOrder.getClient().getName());
         dto.setClientId(printingOrder.getClient().getId());
 
