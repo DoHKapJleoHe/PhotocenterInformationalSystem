@@ -1,8 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-import NewFilialPage from "./NewFilialPage";
-import {Link, Route, Routes} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const FILIALS = 'http://localhost:8080/filials';
 const KIOSKS = 'http://localhost:8080/kiosks/kf';
@@ -40,7 +39,8 @@ class FilialsPage extends React.Component
     render() {
         return(
             <div>
-                <Link to={"/new-filial"} className={"link"}>Добавить филиал</Link>
+                <Link to={"/new-filial"} className={"link"}>Добавить</Link>
+                <Link to={"/update-filial"} className={"link"}>Обновить</Link>
 
                 <h2>Филиалы</h2>
                 <div className={"table-container"}>

@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import {resolvePath} from "react-router-dom";
 import Select from "react-select";
 
 const FILIALS = 'http://localhost:8080/filials';
@@ -12,15 +11,16 @@ class NewKioskPage extends React.Component
         super(props);
         this.state = {
             number: 0,
-            filials:[],
-            curFilial: ""
+            workplaces: 0,
+            curFilial: 0,
+            filials:[]
         }
     }
 
     componentDidMount() {
         axios.get(FILIALS).then(response => {
             const filials = response.data.map(filial => ({
-                value: filial.name,
+                value: filial.id,
                 label: filial.name
             }))
 
@@ -28,10 +28,18 @@ class NewKioskPage extends React.Component
         })
     }
 
+    handleChange = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.value})
+    }
+
     addKiosk()
     {
+        console.log(this.state.number + " " + this.state.curFilial + " " + this.state.workplaces)
+
         axios.post(KIOSKS, {
             number: this.state.number,
+            workplaces: this.state.workplaces,
+            filialId: this.state.curFilial
         }).then()
     }
 
@@ -40,10 +48,16 @@ class NewKioskPage extends React.Component
             <input
                 className={"inputNumber"}
                 placeholder={"Номер киоска"}
+                name={"number"}
+                value={this.state.number}
+                onChange={this.handleChange}
             />
             <input
                 className={"inputWorkplaces"}
                 placeholder={"Число рабочих мест"}
+                name={"workplaces"}
+                value={this.state.workplaces}
+                onChange={this.handleChange}
             />
             <Select
                 className={"select"}
@@ -52,10 +66,7 @@ class NewKioskPage extends React.Component
                 onChange={selectedOption => this.setState({curFilial: selectedOption.value})}
                 options={this.state.filials}
             />
-            <button
-                className={"addButton"}
-                placeholder={"Добавить"}
-            />
+            <button className={"addButton"} onClick={() => this.addKiosk()}>Add!</button>
         </div>
     }
 }

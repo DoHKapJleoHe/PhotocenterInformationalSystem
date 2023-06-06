@@ -11,7 +11,7 @@ import GoodsPage from "./pages/GoodsPage";
 import NewOrderPage from "./pages/NewOrderPage";
 import NewKioskPage from "./pages/kiosk/NewKioskPage";
 import NewFilialPage from "./pages/filial/NewFilialPage";
-
+import UpdateFilialPage from "./pages/filial/UpdateFilialPage";
 
 class App extends React.Component
 {
@@ -39,6 +39,7 @@ class App extends React.Component
                     <Route path={"/new-order"} element={<NewOrderPage/>}></Route>
                     <Route path={"/new-kiosk"} element={<NewKioskPage/>}></Route>
                     <Route path={"/new-filial"} element={<NewFilialPage/>}></Route>
+                    <Route path={"/update-filial"} element={<UpdateFilialPage/>}></Route>
                 </Routes>
             </div>)
     }
