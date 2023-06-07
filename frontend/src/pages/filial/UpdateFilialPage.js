@@ -20,7 +20,7 @@ class UpdateFilialPage extends React.Component
         this.state = {
             column: "",
             value: "",
-            curFilial: "",
+            curFilial: 0,
             filials:[]
         }
     }

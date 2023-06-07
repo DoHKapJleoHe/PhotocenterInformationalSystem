@@ -3,6 +3,7 @@ package ru.nsu.ccfit.g20202.vartazaryan.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.FilialMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.FilialService;
@@ -35,9 +36,9 @@ public class FilialController
     }
 
     @PutMapping
-    public void update(@RequestBody FilialDTO dto)
+    public void update(@RequestBody UpdateDTO dto)
     {
-
+        filialService.update(dto);
     }
 
     @DeleteMapping("/{id}")

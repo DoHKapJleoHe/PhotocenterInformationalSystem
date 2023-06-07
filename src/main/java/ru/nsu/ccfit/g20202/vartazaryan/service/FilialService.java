@@ -3,6 +3,7 @@ package ru.nsu.ccfit.g20202.vartazaryan.service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.FilialRepository;
 
@@ -32,9 +33,20 @@ public class FilialService
         filialRepository.deleteById(id);
     }
 
-    public Filial update(Filial filial)
+    public void update(UpdateDTO dto)
     {
-        return filialRepository.save(filial);
+        switch (dto.getColumn()) {
+            case "Название" -> filialRepository.updateFilialNameById(dto.getId(), dto.getValue());
+
+            case "Город" -> filialRepository.updateFilialCityById(dto.getId(), dto.getValue());
+
+            case "Улица" -> filialRepository.updateFilialStreetById(dto.getId(), dto.getValue());
+
+            case "Рабочие места" -> {
+                Integer number = Integer.parseInt(dto.getValue());
+                filialRepository.updateFilialWorkplacesById(dto.getId(), number);
+            }
+        }
     }
 
     public Optional<Filial> getFilialById(Long id)
