@@ -12,8 +12,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/filials")
+@CrossOrigin(origins = "*")
 public class FilialController
 {
     @Autowired
@@ -35,9 +35,10 @@ public class FilialController
         return FilialMapper.toDTO(filial.get());
     }
 
-    @PutMapping
+    @PutMapping()
     public void update(@RequestBody UpdateDTO dto)
     {
+        System.out.println(dto.getId() + " " + dto.getColumn() + " " + dto.getValue());
         filialService.update(dto);
     }
 

@@ -7,7 +7,6 @@ const FILIALS = 'http://localhost:8080/filials';
 
 const columns = [
     {value: "Название", label: "Название"},
-    {value: "Страна", label: "Страна"},
     {value: "Город", label: "Город"},
     {value: "Улица", label: "Улица"},
     {value: "Рабочие места", label: "Рабочие места"}
@@ -42,7 +41,20 @@ class UpdateFilialPage extends React.Component
 
     handleClick()
     {
-        console.log(this.state.curFilial + " " + this.state.column + " " + this.state.value + " ")
+        console.log(this.state.curFilial + " " + this.state.column + " " + this.state.value)
+        let path = FILIALS
+        console.log(path)
+
+        axios.put(path, {
+            id: this.state.curFilial,
+            column: this.state.column,
+            value: this.state.value
+        }, {
+            headers: {
+                'content-type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            }
+        }).then(r => console.log("request successfully send"))
     }
 
     render() {
@@ -58,8 +70,8 @@ class UpdateFilialPage extends React.Component
             <Select
                 className={"select"}
                 placeholder={"Поле"}
-                value={this.state.curFilial.value}
-                onChange={selectedOption => this.setState({curFilial: selectedOption.value})}
+                value={this.state.column.value}
+                onChange={selectedOption => this.setState({column: selectedOption.value})}
                 options={columns}
             />
 
