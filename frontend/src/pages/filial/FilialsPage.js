@@ -21,8 +21,8 @@ class FilialsPage extends React.Component
             console.log(response.data);
             this.setState({filialData: response.data});
         }).catch(error => {
-                console.error(error);
-            });
+                console.error(error)
+            })
     }
 
     onRowClick(id)

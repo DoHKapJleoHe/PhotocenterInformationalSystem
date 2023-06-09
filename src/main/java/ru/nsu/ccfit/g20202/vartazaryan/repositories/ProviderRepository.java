@@ -6,7 +6,7 @@ import ru.nsu.ccfit.g20202.vartazaryan.entities.PrintingOrder;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Provider;
 
 @Repository
-public interface ProviderRepository extends JpaRepository<Provider, Long>
+public interface ProviderRepository extends JpaRepository<Provider, Integer>
 {
 
 }

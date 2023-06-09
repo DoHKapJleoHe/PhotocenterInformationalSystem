@@ -19,4 +19,5 @@ public class PrintingOrderDTO
     private int kioskNumber;
     private String clientName;
     private Long clientId;
+    private String phoneNumber;
 }

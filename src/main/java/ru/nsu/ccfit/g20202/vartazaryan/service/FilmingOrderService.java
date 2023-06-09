@@ -25,12 +25,26 @@ public class FilmingOrderService
 
     public void createOrder(FilmingOrderDTO dto) throws ParseException
     {
-        FilmingOrder filmingOrder = FilmingOrder.builder()
-                .price(dto.getPrice())
-                .urgency(dto.getUrgency())
-                .date(FilmingOrderMapper.fromStringToDate(dto.getDate()))
-                .client(clientRepository.findById(dto.getClientId()).get())
-                .build();
+        FilmingOrder filmingOrder;
+
+        if(dto.getPhoneNumber() != null)
+        {
+            filmingOrder = FilmingOrder.builder()
+                    .price(dto.getPrice())
+                    .urgency(dto.getUrgency())
+                    .date(FilmingOrderMapper.fromStringToDate(dto.getDate()))
+                    .client(clientRepository.findByPhoneNumber(dto.getPhoneNumber()))
+                    .build();
+        }
+        else
+        {
+            filmingOrder = FilmingOrder.builder()
+                    .price(dto.getPrice())
+                    .urgency(dto.getUrgency())
+                    .date(FilmingOrderMapper.fromStringToDate(dto.getDate()))
+                    .client(clientRepository.findById(dto.getClientId()).get())
+                    .build();
+        }
 
         filmingOrderRepository.save(filmingOrder);
     }

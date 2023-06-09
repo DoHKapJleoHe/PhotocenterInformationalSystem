@@ -30,16 +30,34 @@ public class PrintingOrderService
     }
 
     public void createOrder(PrintingOrderDTO dto) throws ParseException {
-        PrintingOrder printingOrder = PrintingOrder.builder()
-                .numPhotos(dto.getNumPhotos())
-                .numPhotosPerFrame(dto.getNumPhotosPerFrame())
-                .format(dto.getFormat())
-                .paperType(dto.getPaperType())
-                .urgency(dto.getUrgency())
-                .price(dto.getPrice())
-                .date(PrintingOrderMapper.convertStringToDate(dto.getDate()))
-                .client(clientRepository.findById(dto.getClientId()).get())
-                .build();
+        PrintingOrder printingOrder;
+
+        if(dto.getPhoneNumber() != null)
+        {
+            printingOrder = PrintingOrder.builder()
+                    .numPhotos(dto.getNumPhotos())
+                    .numPhotosPerFrame(dto.getNumPhotosPerFrame())
+                    .format(dto.getFormat())
+                    .paperType(dto.getPaperType())
+                    .urgency(dto.getUrgency())
+                    .price(dto.getPrice())
+                    .date(PrintingOrderMapper.convertStringToDate(dto.getDate()))
+                    .client(clientRepository.findByPhoneNumber(dto.getPhoneNumber()))
+                    .build();
+        }
+        else
+        {
+            printingOrder = PrintingOrder.builder()
+                    .numPhotos(dto.getNumPhotos())
+                    .numPhotosPerFrame(dto.getNumPhotosPerFrame())
+                    .format(dto.getFormat())
+                    .paperType(dto.getPaperType())
+                    .urgency(dto.getUrgency())
+                    .price(dto.getPrice())
+                    .date(PrintingOrderMapper.convertStringToDate(dto.getDate()))
+                    .client(clientRepository.findById(dto.getClientId()).get())
+                    .build();
+        }
 
         printingRepository.save(printingOrder);
     }

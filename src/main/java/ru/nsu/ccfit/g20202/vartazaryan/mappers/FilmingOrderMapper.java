@@ -15,6 +15,7 @@ public class FilmingOrderMapper
         dto.setId(order.getId());
         dto.setPrice(order.getPrice());
         dto.setUrgency(order.getUrgency());
+        dto.setDate(convertDateToString(order.getDate()));
         dto.setClientName(order.getClient().getName());
         dto.setClientId(order.getClient().getId());
         dto.setKioskNumber(order.getKioskNumber());

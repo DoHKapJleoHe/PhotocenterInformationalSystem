@@ -1,0 +1,12 @@
+.supAmount{
+    position: fixed;
+    width: 193px;
+    height: 25px;
+}
+
+.getSupply{
+    position: fixed;
+    margin-top: 35px;
+    width: 200px;
+    height: 25px;
+}

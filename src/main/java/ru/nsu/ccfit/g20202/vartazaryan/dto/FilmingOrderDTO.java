@@ -12,4 +12,5 @@ public class FilmingOrderDTO
     private int kioskNumber;
     private String clientName;
     private Long clientId;
+    private String phoneNumber;
 }

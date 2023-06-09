@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskResourcesDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.ResourceDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.KioskMapper;
+import ru.nsu.ccfit.g20202.vartazaryan.mappers.KioskResourcesMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.KioskService;
 
 import java.util.List;
@@ -46,7 +49,14 @@ public class KioskController
     @PutMapping
     public void update()
     {
+    }
 
+    @GetMapping("/resources/{id}")
+    public List<KioskResourcesDTO> getKioskResources(@PathVariable Integer id)
+    {
+        var res = kioskService.getKioskResourcesById(id);
+
+        return res.stream().map(KioskResourcesMapper::toDTO).toList();
     }
 
     @DeleteMapping("/{id}")

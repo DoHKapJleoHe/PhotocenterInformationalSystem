@@ -3,8 +3,8 @@ package ru.nsu.ccfit.g20202.vartazaryan.dto;
 import lombok.Data;
 
 @Data
-public class ResourceDTO
+public class KioskResourcesDTO
 {
-    private Long id;
     private String name;
+    private Integer amount;
 }

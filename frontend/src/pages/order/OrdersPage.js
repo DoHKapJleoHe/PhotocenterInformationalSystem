@@ -37,8 +37,9 @@ class OrdersPage extends React.Component
 
     getFullPrice()
     {
-        const result = this.state.printingData.reduce((sum, order) => sum +=order.price, 0);
-        this.setState({price_printing: result})
+        const resultP = this.state.printingData.reduce((sum, order) => sum += order.price, 0);
+        const resultF = this.state.filmingData.reduce((sum, order) => sum += order.price, 0);
+        this.setState({price_printing: resultP+resultF})
     }
 
     componentDidMount() {
@@ -51,7 +52,9 @@ class OrdersPage extends React.Component
         })
 
         axios.get(FILM).then(order => {
-            this.setState({filmingData: order.data})
+            this.setState({filmingData: order.data}, () => {
+                this.getFullPrice()
+            })
         }).catch(error => {
             console.error(error)
         })

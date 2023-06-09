@@ -5,7 +5,7 @@ class Header extends React.Component
     render() {
         return(
             <header className={"header"}>
-                Photo center informational system
+                Photocenter informational system
             </header>)
     }
 }

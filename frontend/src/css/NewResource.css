@@ -1,0 +1,13 @@
+.resName{
+    position: fixed;
+    margin-top: 10px;
+    width: 200px;
+    height: 25px;
+}
+
+.addRes{
+    position: fixed;
+    margin-top: 45px;
+    width: 207px;
+    height: 25px;
+}

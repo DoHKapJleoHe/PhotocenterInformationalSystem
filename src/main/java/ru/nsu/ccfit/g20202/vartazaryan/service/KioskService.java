@@ -8,8 +8,11 @@ import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
+import ru.nsu.ccfit.g20202.vartazaryan.entities.KioskResource;
+import ru.nsu.ccfit.g20202.vartazaryan.entities.Resource;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.FilialRepository;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.KioskRepository;
+import ru.nsu.ccfit.g20202.vartazaryan.repositories.KioskResourceRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,8 +21,9 @@ import java.util.Optional;
 @AllArgsConstructor
 public class KioskService
 {
-    private final KioskRepository kioskRepository;
-    private final FilialRepository filialRepository;
+    private KioskRepository kioskRepository;
+    private FilialRepository filialRepository;
+    private KioskResourceRepository kioskResourceRepository;
 
     public List<Kiosk> getAllKiosks()
     {
@@ -53,5 +57,11 @@ public class KioskService
                 .build();
 
         kioskRepository.save(kiosk);
+    }
+
+    public List<KioskResource> getKioskResourcesById(Integer id)
+    {
+
+        return kioskResourceRepository.findAllByKiosk_Id(Long.valueOf(id));
     }
 }

@@ -4,6 +4,8 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 
 const KIOSKS = 'http://localhost:8080/kiosks';
+const PRINTING = 'http://localhost:8080/printing-orders';
+const FILMING = 'http://localhost:8080/filming-orders';
 
 const urgency = [
     {value:"Срочно", label:"Срочно"},
@@ -49,8 +51,17 @@ class NewOrderPage extends React.Component
             price: 0,
             newClient: false,
             kiosks: [],
-            curKiosk: 0
+            curKiosk: 0,
+            curKioskPaper: 0,
+            curKioskInk: 0,
+            curKioskFilm: 0,
+            clientName: "",
+            clientPhone: 0
         }
+    }
+
+    handleChange = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.value})
     }
 
     makeOrder()
@@ -61,18 +72,75 @@ class NewOrderPage extends React.Component
         - Также надо будет сделать проверку на тип заказ и сделать запрос на соответствующий контроллер.
         - Также нужно сделать, чтобы при загрузке страницы подкачивались киоски для отображения в списке
           возможных киосков.
-        - При выборе киоска должна высвечиваться информация о его ресурсах: кол-во бумаги, краски, плёнки
+        - При выборе киоска должна высвечиваться информация о его ресурсах: кол-во бумаги, чернил, плёнки
         */
+        if(this.state.type === "Печать")
+        {
+            if(this.state.curKioskPaper !== 0)
+            {
+                axios.post(PRINTING, {
+                    numPhotos: this.state.numPhotos,
+                    numPhotosPerFrame: this.state.numPhotosPerFrame,
+                    format: this.state.format,
+                    paperType: this.state.paperType,
+                    urgency: this.state.urgency,
+                    price: this.state.price,
+                    date: this.state.date,
+                    kioskNumber: this.state.curKiosk,
+                    clientName: this.state.clientName,
+                    phoneNumber: this.state.clientPhone
+                }).then()
+            }
+            else
+            {
+                alert("Not enough resources!")
+            }
+        }
+        else
+        {
+            console.log("Filming order")
+            if(this.state.curKioskFilm !== 0)
+            {
+                axios.post(FILMING, {
+                    price: this.state.price,
+                    urgency: this.state.urgency,
+                    date: this.state.date,
+                    kioskNumber: this.state.curKiosk,
+                    clientName: this.state.clientName,
+                    phoneNumber: this.state.clientPhone
+                }).then()
+            }
+            else
+            {
+                alert("Not enough resources!")
+            }
+        }
+
     }
 
     componentDidMount() {
         axios.get(KIOSKS).then(response => {
             const kiosks = response.data.map(kiosk => ({
-                value:kiosk.number,
+                value:kiosk.id,
                 label:kiosk.number
             }))
             this.setState({kiosks})
         })
+    }
+
+    setResources(res) {
+        if (res.name === "Бумага")
+        {
+            this.setState({curKioskPaper: res.amount})
+        }
+        else if (res.name === "Чернила")
+        {
+            this.setState({curKioskInk: res.amount})
+        }
+        else
+        {
+            this.setState({curKioskFilm: res.amount})
+        }
     }
 
     render()
@@ -82,8 +150,18 @@ class NewOrderPage extends React.Component
         if(this.state.newClient === false)
         {
             c2 = <div>
-                <input className={"orderInput"} placeholder={"Номер телефона"}/>
-                <input className={"orderInput"} placeholder={"Имя клиента"}/>
+                <input className={"orderInput"}
+                       placeholder={"Номер телефона"}
+                       name={"clientPhone"}
+                       value={this.state.clientPhone}
+                       onChange={this.handleChange}
+                />
+                <input className={"orderInput"}
+                       placeholder={"Имя клиента"}
+                       name={"clientName"}
+                       value={this.state.clientName}
+                       onChange={this.handleChange}
+                />
             </div>
         }
         else if(this.state.newClient === true)
@@ -142,8 +220,16 @@ class NewOrderPage extends React.Component
                 placeholder={"Киоск"}
                 value={this.state.curKiosk.value}
                 onChange={selectedOption => {
-                    this.setState({curKiosk: selectedOption.value})}
-                }
+                    this.setState({curKiosk: selectedOption.value})
+                    let path = KIOSKS+'/resources/'+selectedOption.value;
+                    axios.get(path).then(response => {
+                        console.log(response.data)
+                        response.data.map(res => (
+                            this.setResources(res)
+                        ))
+                    })
+                }}
+                options={this.state.kiosks}
             />
             <Select
                 className={"select"}
@@ -179,7 +265,12 @@ class NewOrderPage extends React.Component
                     }
                 }}
             />
-            <input className={"orderInput"} placeholder={"Цена"}></input>
+            <input className={"orderInput"}
+                   placeholder={"Цена"}
+                   name={"price"}
+                   value={this.state.price}
+                   onChange={this.handleChange}
+            />
             <label>
                 <input
                     type={"checkbox"}
@@ -197,9 +288,9 @@ class NewOrderPage extends React.Component
             <text className={"resource1"}>Чернила</text>
             <text className={"resource2"}>Плёнка</text>
 
-            <text className={"resource-value"}>0</text>
-            <text className={"resource1-value"}>0</text>
-            <text className={"resource2-value"}>0</text>
+            <text className={"resource-value"}>{this.state.curKioskPaper}</text>
+            <text className={"resource1-value"}>{this.state.curKioskInk}</text>
+            <text className={"resource2-value"}>{this.state.curKioskFilm}</text>
         </div>
     }
 }

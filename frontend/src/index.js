@@ -14,6 +14,9 @@ import './css/NewOrder.css'
 import './css/NewKiosk.css'
 import './css/NewFilial.css'
 import './css/UpdateFilial.css'
+import './css/NewProvider.css'
+import './css/NewSupply.css'
+import './css/NewResource.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))
 app.render(

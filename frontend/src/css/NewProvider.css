@@ -1,0 +1,16 @@
+.addr{
+    position: fixed;
+    margin-top: 40px;
+}
+
+.number{
+    position: fixed;
+    margin-top: 70px;
+}
+
+.add1{
+    position: fixed;
+    margin-top: 100px;
+    width: 169px;
+    height: 30px;
+}
