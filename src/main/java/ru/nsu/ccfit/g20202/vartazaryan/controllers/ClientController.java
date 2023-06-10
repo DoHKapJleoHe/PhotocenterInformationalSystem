@@ -3,6 +3,7 @@ package ru.nsu.ccfit.g20202.vartazaryan.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.ClientDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.ClientMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.ClientService;
 
@@ -24,10 +25,24 @@ public class ClientController
         return clients.stream().map(ClientMapper::toDTO).toList();
     }
 
+    @GetMapping("/{num}")
+    public List<ClientDTO> getClientsByOrdersNum(@PathVariable Integer num)
+    {
+        var clients = clientService.getClientsByOrdersNum(num);
+
+        return clients.stream().map(ClientMapper::toDTO).toList();
+    }
+
     @PostMapping
     public void createClient(@RequestBody ClientDTO clientDTO)
     {
         clientService.createClient(clientDTO);
+    }
+
+    @PutMapping()
+    public void updateClient(@RequestBody UpdateDTO dto)
+    {
+        clientService.update(dto);
     }
 
     @DeleteMapping("/{id}")

@@ -1,9 +1,9 @@
 package ru.nsu.ccfit.g20202.vartazaryan.service;
 
-import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.ClientDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Client;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.ClientRepository;
 
@@ -16,21 +16,33 @@ public class ClientService
 {
     private final ClientRepository clientRepository;
 
-    public Client createClient(ClientDTO clientDTO)
+    public void createClient(ClientDTO clientDTO)
     {
         Client newClient = Client.builder()
                 .name(clientDTO.getName())
                 .surname(clientDTO.getSurname())
                 .type(clientDTO.getType())
                 .discountCard(clientDTO.getDiscountCard())
+                .phoneNumber(clientDTO.getPhoneNumber())
                 .build();
 
-        return clientRepository.save(newClient);
+        clientRepository.save(newClient);
     }
 
-    public Client update(Client client)
+    public void update(UpdateDTO dto)
     {
-        return clientRepository.save(client);
+        switch (dto.getColumn())
+        {
+            case "Имя" -> clientRepository.updateClientNameById(dto.getValue(), dto.getId());
+
+            case "Фамилия" -> clientRepository.updateClientSurnameById(dto.getValue(), dto.getId());
+
+            case "Тип" -> clientRepository.updateClientTypeById(dto.getValue(), dto.getId());
+
+            case "Скидочная карта" -> clientRepository.updateClientDiscountById(dto.getValue(), dto.getId());
+
+            case "Номер" -> clientRepository.updateClientPhoneById(dto.getValue(), dto.getId());
+        }
     }
 
     public Optional<Client> getClientById(Long id)
@@ -46,5 +58,17 @@ public class ClientService
     public void deleteUserById(Long id)
     {
         clientRepository.deleteById(id);
+    }
+
+    public List<Client> getClientsByOrdersNum(Integer num)
+    {
+        if(num != null)
+        {
+            return clientRepository.findAllByOrdersNum(num);
+        }
+        else
+        {
+            return clientRepository.findAll();
+        }
     }
 }

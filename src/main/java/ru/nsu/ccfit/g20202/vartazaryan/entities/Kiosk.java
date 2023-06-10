@@ -24,6 +24,6 @@ public class Kiosk
     @ManyToOne(optional = false)
     private Filial filial;
 
-    @OneToMany(mappedBy = "kiosk")
+    @OneToMany(mappedBy = "kiosk", cascade = CascadeType.REMOVE)
     private List<KioskResource> resources;
 }

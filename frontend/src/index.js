@@ -17,6 +17,7 @@ import './css/UpdateFilial.css'
 import './css/NewProvider.css'
 import './css/NewSupply.css'
 import './css/NewResource.css'
+import './css/ClientsFilter.css'
 
 const app = ReactDOMClient.createRoot(document.getElementById("root"))
 app.render(

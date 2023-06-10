@@ -224,6 +224,9 @@ class NewOrderPage extends React.Component
                     let path = KIOSKS+'/resources/'+selectedOption.value;
                     axios.get(path).then(response => {
                         console.log(response.data)
+                        this.setState({curKioskInk: 0})
+                        this.setState({curKioskPaper: 0})
+                        this.setState({curKioskFilm: 0})
                         response.data.map(res => (
                             this.setResources(res)
                         ))

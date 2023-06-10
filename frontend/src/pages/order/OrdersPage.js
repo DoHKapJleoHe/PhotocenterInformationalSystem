@@ -102,8 +102,8 @@ class OrdersPage extends React.Component
                 <table className={"sub-table1"}>
                     <thead className={"sub-thead"}>
                     <th>ID</th>
-                    <th>Цена</th>
                     <th>Срочность</th>
+                    <th>Цена</th>
                     <th>Дата</th>
                     <th>Имя клиента</th>
                     <th>ID клиента</th>
@@ -112,8 +112,8 @@ class OrdersPage extends React.Component
                     {this.state.filmingData.map(order => (
                         <tr key={order.id}>
                             <td>{order.id}</td>
-                            <td>{order.price}</td>
                             <td>{order.urgency}</td>
+                            <td>{order.price}</td>
                             <td>{order.date}</td>
                             <td>{order.clientName}</td>
                             <td>{order.clientId}</td>

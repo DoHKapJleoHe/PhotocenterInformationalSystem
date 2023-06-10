@@ -4,7 +4,7 @@ import {Route, Routes, Link} from "react-router-dom";
 import Header from "./components/Header";
 import FilialsPage from "./pages/filial/FilialsPage"
 import KiosksPage from "./pages/kiosk/KiosksPage";
-import ClientsPage from "./pages/ClientsPage";
+import ClientsPage from "./pages/client/ClientsPage";
 import OrdersPage from "./pages/order/OrdersPage";
 import ProvidersPage from "./pages/provider/ProvidersPage";
 import GoodsPage from "./pages/goods/GoodsPage";
@@ -15,6 +15,8 @@ import UpdateFilialPage from "./pages/filial/UpdateFilialPage";
 import NewProvider from "./pages/provider/NewProvider";
 import NewSupply from "./pages/provider/NewSupply";
 import NewResource from "./pages/goods/NewResource";
+import UpdateClient from "./pages/client/UpdateClient";
+import DeleteKiosk from "./pages/kiosk/DeleteKiosk";
 
 class App extends React.Component
 {
@@ -46,6 +48,8 @@ class App extends React.Component
                     <Route path={"/new-provider"} element={<NewProvider/>}></Route>
                     <Route path={"/get-supply"} element={<NewSupply/>}></Route>
                     <Route path={"/new-resource"} element={<NewResource/>}></Route>
+                    <Route path={"/update-client"} element={<UpdateClient/>}></Route>
+                    <Route path={"/delete-kiosk"} element={<DeleteKiosk/>}></Route>
                 </Routes>
             </div>)
     }

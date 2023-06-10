@@ -13,6 +13,7 @@ public class ClientMapper
         clientDTO.setSurname(client.getSurname());
         clientDTO.setType(client.getType());
         clientDTO.setDiscountCard(client.getDiscountCard());
+        clientDTO.setPhoneNumber(client.getPhoneNumber());
 
         return clientDTO;
     }

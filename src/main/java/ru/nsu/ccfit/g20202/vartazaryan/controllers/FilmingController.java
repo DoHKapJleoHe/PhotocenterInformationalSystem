@@ -25,6 +25,13 @@ public class FilmingController
         return orders.stream().map(FilmingOrderMapper::toDTO).toList();
     }
 
+    @GetMapping("/{id}")
+    public List<FilmingOrderDTO> getOrdersByClientId(@PathVariable Integer id)
+    {
+        var orders = filmingOrderService.getOrdersByClientId(id);
+        return orders.stream().map(FilmingOrderMapper::toDTO).toList();
+    }
+
     @PostMapping
     public void createOrder(@RequestBody FilmingOrderDTO dto) throws ParseException
     {

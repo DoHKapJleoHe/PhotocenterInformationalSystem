@@ -48,4 +48,9 @@ public class FilmingOrderService
 
         filmingOrderRepository.save(filmingOrder);
     }
+
+    public List<FilmingOrder> getOrdersByClientId(Integer id)
+    {
+        return filmingOrderRepository.findAllByClientId(Long.valueOf(id));
+    }
 }

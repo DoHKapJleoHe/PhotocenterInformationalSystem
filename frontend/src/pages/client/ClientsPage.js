@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 const CLIENTS = 'http://localhost:8080/clients';
 const PRINTING_ORDER = 'http://localhost:8080/printing-orders'
+const FILMING_ORDER = 'http://localhost:8080/filming-orders';
 
 class ClientsPage extends React.Component
 {
@@ -11,23 +13,46 @@ class ClientsPage extends React.Component
         this.state = {
             clientData: [],
             printingData: [],
-            filmingData: []
+            filmingData: [],
+            ordersNum: 0
         }
     }
 
     componentDidMount() {
         axios.get(CLIENTS).then(response => {
             this.setState({clientData: response.data})
+            console.log(response.data)
         }).catch(error => {
             console.error(error)
         })
     }
 
+    handleChange = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.value})
+    }
+
+    handleClick()
+    {
+        let path = CLIENTS+'/'+this.state.ordersNum;
+        console.log(path)
+        axios.get(path).then(response => {
+            console.log(response.data)
+            this.setState({clientData: response.data})
+        })
+    }
+
     onRowClick(id)
     {
-        let PATH = PRINTING_ORDER+'/'+id;
-        axios.get(PATH).then(response => {
+        let PATH1 = PRINTING_ORDER+'/'+id;
+        axios.get(PATH1).then(response => {
             this.setState({printingData:response.data})
+        }).catch(error => {
+            console.error(error);
+        });
+
+        let PATH2 = FILMING_ORDER+'/'+id;
+        axios.get(PATH2).then(response => {
+            this.setState({filmingData:response.data})
         }).catch(error => {
             console.error(error);
         });
@@ -35,6 +60,8 @@ class ClientsPage extends React.Component
 
     render() {
         return <div>
+            <Link to={"/update-client"} className={"link"}>Обновить</Link>
+
             <h2>Клиенты</h2>
             <div className={"table-container"}>
                 <table className={"table"}>
@@ -44,6 +71,7 @@ class ClientsPage extends React.Component
                     <th>Фамилия</th>
                     <th>Тип</th>
                     <th>Скидочная карта</th>
+                    <th>Телефон</th>
                     </thead>
                     <tbody>
                     {this.state.clientData.map(client => (
@@ -53,6 +81,7 @@ class ClientsPage extends React.Component
                             <td>{client.surname}</td>
                             <td>{client.type}</td>
                             <td>{client.discountCard}</td>
+                            <td>{client.phoneNumber}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -99,10 +128,26 @@ class ClientsPage extends React.Component
                     <th>Дата</th>
                     </thead>
                     <tbody>
-
+                    {this.state.filmingData.map(order => (
+                        <tr key={order.id}>
+                            <td>{order.id}</td>
+                            <td>{order.price}</td>
+                            <td>{order.urgency}</td>
+                            <td>{order.date}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>
+
+            <input placeholder={"Кол-во заказов"}
+                   className={"ordersNumFilterInput"}
+                   name={"ordersNum"}
+                   value={this.state.ordersNum.value}
+                   onChange={this.handleChange}
+            />
+
+            <button className={"ordersNumFilterButton"} onClick={() => this.handleClick()}>Найти!</button>
         </div>
     }
 }

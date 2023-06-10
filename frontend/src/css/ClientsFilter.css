@@ -1,0 +1,13 @@
+.ordersNumFilterInput{
+    position: fixed;
+    top: 23.5%;
+    margin-left: 900px;
+}
+
+.ordersNumFilterButton{
+    position: fixed;
+    top: 23.5%;
+    margin-left: 1100px;
+    width: 80px;
+    height: 22px;
+}

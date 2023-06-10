@@ -13,7 +13,7 @@ public interface FilialRepository extends JpaRepository<Filial, Long>
 {
     @Transactional
     @Modifying
-    @Query("UPDATE Filial f SET f.city = :city WHERE f.id = :idty")
+    @Query("UPDATE Filial f SET f.city = :city WHERE f.id = :id")
     void updateFilialCityById(@Param("id") Integer id, @Param("city") String city);
 
     @Transactional

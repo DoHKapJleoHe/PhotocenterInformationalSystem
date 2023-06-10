@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface KioskRepository extends JpaRepository<Kiosk, Long>
 {
-    @Query("select k from Kiosk k where k.filial.id = :id")
+    @Query("SELECT k FROM Kiosk k WHERE k.filial.id = :id")
     List<Kiosk> getKiosksByFilialId(@Param("id") Long id);
 }
