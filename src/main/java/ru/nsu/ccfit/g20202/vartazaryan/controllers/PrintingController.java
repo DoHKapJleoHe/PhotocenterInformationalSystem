@@ -46,4 +46,10 @@ public class PrintingController
     public void createOrder(@RequestBody PrintingOrderDTO dto) throws ParseException {
         printingService.createOrder(dto);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable Integer id)
+    {
+        printingService.deleteOrder(id);
+    }
 }

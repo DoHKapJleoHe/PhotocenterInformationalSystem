@@ -4,9 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.PrintingOrderDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.PrintingOrder;
+import ru.nsu.ccfit.g20202.vartazaryan.entities.Resource;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.PrintingOrderMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.ClientRepository;
+import ru.nsu.ccfit.g20202.vartazaryan.repositories.KioskResourceRepository;
 import ru.nsu.ccfit.g20202.vartazaryan.repositories.PrintingOrderRepository;
+import ru.nsu.ccfit.g20202.vartazaryan.repositories.ResourceRepository;
 
 import java.text.ParseException;
 import java.util.Date;
@@ -18,6 +21,8 @@ public class PrintingOrderService
 {
     private PrintingOrderRepository printingRepository;
     private ClientRepository clientRepository;
+    private KioskResourceRepository kioskResourceRepository;
+    private ResourceRepository resourceRepository;
 
     public List<PrintingOrder> getOrdersByClientId(Long id)
     {
@@ -60,6 +65,12 @@ public class PrintingOrderService
         }
 
         printingRepository.save(printingOrder);
+
+        Resource res1 = resourceRepository.findByName("Бумага");
+        Resource res2 = resourceRepository.findByName("Чернила");
+
+        kioskResourceRepository.decreaseResourceByKioskIdAndResourceId(dto.getKioskNumber(), Math.toIntExact(res1.getId()));
+        kioskResourceRepository.decreaseResourceByKioskIdAndResourceId(dto.getKioskNumber(), Math.toIntExact(res2.getId()));
     }
 
     public List<PrintingOrder> getOrdersByDate(String dateFrom, String dateTo) throws ParseException
@@ -75,5 +86,10 @@ public class PrintingOrderService
 
             return printingRepository.findPrintingOrderByDateBetween(date1, date2);
         }
+    }
+
+    public void deleteOrder(Integer id)
+    {
+        printingRepository.deleteById(Long.valueOf(id));
     }
 }

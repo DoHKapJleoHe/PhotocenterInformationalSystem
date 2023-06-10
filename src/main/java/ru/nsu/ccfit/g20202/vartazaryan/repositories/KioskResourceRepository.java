@@ -23,5 +23,10 @@ public interface KioskResourceRepository extends JpaRepository<KioskResource, In
             @Param("resource_id") Integer resourceId,
             @Param("amount") Integer amount);
 
+    @Transactional
+    @Modifying
+    @Query("UPDATE KioskResource kr SET kr.amount=kr.amount-1 WHERE kr.kiosk.id=:kiosk_id AND kr.resource.id=:resource_id")
+    void decreaseResourceByKioskIdAndResourceId(@Param("kiosk_id") Integer kiosk_id, @Param("resource_id") Integer resource_id);
+
     List<KioskResource> findAllByKiosk_Id(Long kiosk_id);
 }

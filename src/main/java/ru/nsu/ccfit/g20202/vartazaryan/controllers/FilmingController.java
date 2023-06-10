@@ -37,4 +37,10 @@ public class FilmingController
     {
         filmingOrderService.createOrder(dto);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteOrder(@PathVariable Integer id)
+    {
+        filmingOrderService.deleteOrder(id);
+    }
 }

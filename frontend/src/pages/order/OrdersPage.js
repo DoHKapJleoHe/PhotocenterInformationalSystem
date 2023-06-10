@@ -42,7 +42,8 @@ class OrdersPage extends React.Component
         this.setState({price_printing: resultP+resultF})
     }
 
-    componentDidMount() {
+    getData()
+    {
         axios.get(PRINT).then(order => {
             this.setState({printingData: order.data}, () => {
                 this.getFullPrice()
@@ -57,6 +58,26 @@ class OrdersPage extends React.Component
             })
         }).catch(error => {
             console.error(error)
+        })
+    }
+
+    componentDidMount() {
+        this.getData()
+    }
+
+    onRowClick1(id)
+    {
+        let path = PRINT+'/'+id;
+        axios.delete(path).then(() => {
+            this.getData()
+        })
+    }
+
+    onRowClick2(id)
+    {
+        let path = FILM+'/'+id;
+        axios.delete(path).then(() => {
+            this.getData()
         })
     }
 
@@ -80,7 +101,7 @@ class OrdersPage extends React.Component
                     </thead>
                     <tbody>
                     {this.state.printingData.map(order => (
-                        <tr key={order.id}>
+                        <tr key={order.id} onClick={() => this.onRowClick1(order.id)}>
                             <td>{order.id}</td>
                             <td>{order.numPhotos}</td>
                             <td>{order.numPhotosPerFrame}</td>
@@ -110,7 +131,7 @@ class OrdersPage extends React.Component
                     </thead>
                     <tbody>
                     {this.state.filmingData.map(order => (
-                        <tr key={order.id}>
+                        <tr key={order.id} onClick={() => this.onRowClick2(order.id)}>
                             <td>{order.id}</td>
                             <td>{order.urgency}</td>
                             <td>{order.price}</td>

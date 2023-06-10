@@ -6,6 +6,7 @@ import DatePicker from "react-datepicker";
 const KIOSKS = 'http://localhost:8080/kiosks';
 const PRINTING = 'http://localhost:8080/printing-orders';
 const FILMING = 'http://localhost:8080/filming-orders';
+const CLIENTS = 'http://localhost:8080/clients';
 
 const urgency = [
     {value:"Срочно", label:"Срочно"},
@@ -56,6 +57,9 @@ class NewOrderPage extends React.Component
             curKioskInk: 0,
             curKioskFilm: 0,
             clientName: "",
+            clientSurname: "",
+            clientType: "",
+            clientDiscount: "",
             clientPhone: 0
         }
     }
@@ -64,16 +68,8 @@ class NewOrderPage extends React.Component
         this.setState({...this.state, [event.target.name]: event.target.value})
     }
 
-    makeOrder()
+    makeOrderRequest()
     {
-        /*
-        - Здесь надо будет сделать запрос на бек.
-        - Надо будет сделать проверку на то, новый ли это пользователь, чтобы создать его.
-        - Также надо будет сделать проверку на тип заказ и сделать запрос на соответствующий контроллер.
-        - Также нужно сделать, чтобы при загрузке страницы подкачивались киоски для отображения в списке
-          возможных киосков.
-        - При выборе киоска должна высвечиваться информация о его ресурсах: кол-во бумаги, чернил, плёнки
-        */
         if(this.state.type === "Печать")
         {
             if(this.state.curKioskPaper !== 0)
@@ -115,7 +111,34 @@ class NewOrderPage extends React.Component
                 alert("Not enough resources!")
             }
         }
+    }
 
+    makeOrder()
+    {
+        /*
+        - Здесь надо будет сделать запрос на бек.
+        - Надо будет сделать проверку на то, новый ли это пользователь, чтобы создать его.
+        - Также надо будет сделать проверку на тип заказ и сделать запрос на соответствующий контроллер.
+        - Также нужно сделать, чтобы при загрузке страницы подкачивались киоски для отображения в списке
+          возможных киосков.
+        - При выборе киоска должна высвечиваться информация о его ресурсах: кол-во бумаги, чернил, плёнки
+        */
+        if (this.state.newClient === false)
+        {
+            this.makeOrderRequest()
+        }
+        else
+        {
+            axios.post(CLIENTS, {
+                name: this.state.clientName,
+                surname: this.state.clientSurname,
+                type: this.state.clientType,
+                discountCard: this.state.clientDiscount,
+                phoneNumber: this.state.clientPhone
+            }).then(() => {
+                this.makeOrderRequest()
+            })
+        }
     }
 
     componentDidMount() {
@@ -167,11 +190,36 @@ class NewOrderPage extends React.Component
         else if(this.state.newClient === true)
         {
             c2 = <div>
-                <input className={"orderInput"} placeholder={"Имя"}/>
-                <input className={"orderInput"} placeholder={"Фамилия"}/>
-                <input className={"orderInput"} placeholder={"Тип"}/>
-                <input className={"orderInput"} placeholder={"Скидочная карта"}/>
-                <input className={"orderInput"} placeholder={"Номер телефона"}/>
+                <input className={"orderInput"}
+                       placeholder={"Имя"}
+                       name={"clientName"}
+                       value={this.state.clientName}
+                       onChange={this.handleChange}
+                />
+                <input className={"orderInput"}
+                       placeholder={"Фамилия"}
+                       name={"clientSurname"}
+                       value={this.state.clientSurname}
+                       onChange={this.handleChange}
+                />
+                <input className={"orderInput"}
+                       placeholder={"Тип"}
+                       name={"clientType"}
+                       value={this.state.clientType}
+                       onChange={this.handleChange}
+                />
+                <input className={"orderInput"}
+                       placeholder={"Скидочная карта"}
+                       name={"clientDiscount"}
+                       value={this.state.clientDiscount}
+                       onChange={this.handleChange}
+                />
+                <input className={"orderInput"}
+                       placeholder={"Номер телефона"}
+                       name={"clientPhone"}
+                       value={this.state.clientPhone}
+                       onChange={this.handleChange}
+                />
             </div>
         }
 

@@ -9,5 +9,5 @@ import ru.nsu.ccfit.g20202.vartazaryan.entities.Resource;
 
 public interface ResourceRepository extends JpaRepository<Resource, Integer>
 {
-
+    Resource findByName(String name);
 }
