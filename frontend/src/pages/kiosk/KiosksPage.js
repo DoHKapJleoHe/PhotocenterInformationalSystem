@@ -27,6 +27,7 @@ class KiosksPage extends React.Component
         return(<div>
                 <Link to={"/new-kiosk"} className={"link"}>Добавить</Link>
                 <Link to={"/delete-kiosk"} className={"link"}>Удалить</Link>
+                <Link to={"/update-kiosk"} className={"link"}>Обновить</Link>
 
                 <h2>Киоски</h2>
                 <div className={"table-container"}>

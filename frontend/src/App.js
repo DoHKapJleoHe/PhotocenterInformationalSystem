@@ -12,11 +12,19 @@ import NewOrderPage from "./pages/order/NewOrderPage";
 import NewKioskPage from "./pages/kiosk/NewKioskPage";
 import NewFilialPage from "./pages/filial/NewFilialPage";
 import UpdateFilialPage from "./pages/filial/UpdateFilialPage";
-import NewProvider from "./pages/provider/NewProvider";
+import NewProviderPage from "./pages/provider/NewProviderPage";
 import NewSupply from "./pages/provider/NewSupply";
 import NewResource from "./pages/goods/NewResource";
-import UpdateClient from "./pages/client/UpdateClient";
+import UpdateClientPage from "./pages/client/UpdateClientPage";
 import DeleteKiosk from "./pages/kiosk/DeleteKiosk";
+import Registration from "./Registration";
+import DeleteClientPage from "./pages/client/DeleteClientPage";
+import DeleteFilial from "./pages/filial/DeleteFilial";
+import UpdateKiosk from "./pages/kiosk/UpdateKiosk";
+import DeleteProviderPage from "./pages/provider/DeleteProviderPage";
+import Login from "./Login";
+import UpdateProviderPage from "./pages/provider/UpdateProviderPage";
+
 
 class App extends React.Component
 {
@@ -32,6 +40,8 @@ class App extends React.Component
                     <Link to={"/providers"} className={"link"}>Поставщики</Link>
                     <Link to={"/goods"} className={"link"}>Товары</Link>
                     <Link to={"/new-order"} className={"link"}>Сделать заказ</Link>
+                    <Link to={"/registration"} className={"link"}>Регистрация</Link>
+                    <Link to={"/login"} className={"link"}>Войти</Link>
                 </p>
 
                 <Routes>
@@ -45,11 +55,18 @@ class App extends React.Component
                     <Route path={"/new-kiosk"} element={<NewKioskPage/>}></Route>
                     <Route path={"/new-filial"} element={<NewFilialPage/>}></Route>
                     <Route path={"/update-filial"} element={<UpdateFilialPage/>}></Route>
-                    <Route path={"/new-provider"} element={<NewProvider/>}></Route>
+                    <Route path={"/new-provider"} element={<NewProviderPage/>}></Route>
                     <Route path={"/get-supply"} element={<NewSupply/>}></Route>
                     <Route path={"/new-resource"} element={<NewResource/>}></Route>
-                    <Route path={"/update-client"} element={<UpdateClient/>}></Route>
+                    <Route path={"/update-client"} element={<UpdateClientPage/>}></Route>
                     <Route path={"/delete-kiosk"} element={<DeleteKiosk/>}></Route>
+                    <Route path={"/delete-client"} element={<DeleteClientPage/>}></Route>
+                    <Route path={"/delete-filial"} element={<DeleteFilial/>}></Route>
+                    <Route path={"/update-kiosk"} element={<UpdateKiosk/>}></Route>
+                    <Route path={"/delete-provider"} element={<DeleteProviderPage/>}></Route>
+                    <Route path={"/registration"} element={<Registration/>}></Route>
+                    <Route path={"/login"} element={<Login/>}></Route>
+                    <Route path={"/update-provider"} element={<UpdateProviderPage/>}></Route>
                 </Routes>
             </div>)
     }

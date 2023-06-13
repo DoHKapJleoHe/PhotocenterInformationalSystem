@@ -61,6 +61,7 @@ class ClientsPage extends React.Component
     render() {
         return <div>
             <Link to={"/update-client"} className={"link"}>Обновить</Link>
+            <Link to={"/delete-client"} className={"link"}>Удалить</Link>
 
             <h2>Клиенты</h2>
             <div className={"table-container"}>

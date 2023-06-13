@@ -41,6 +41,7 @@ class FilialsPage extends React.Component
             <div>
                 <Link to={"/new-filial"} className={"link"}>Добавить</Link>
                 <Link to={"/update-filial"} className={"link"}>Обновить</Link>
+                <Link to={"/delete-filial"} className={"link"}>Удалить</Link>
 
                 <h2>Филиалы</h2>
                 <div className={"table-container"}>

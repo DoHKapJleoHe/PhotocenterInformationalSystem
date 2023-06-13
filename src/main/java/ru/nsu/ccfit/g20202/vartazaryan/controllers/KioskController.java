@@ -2,10 +2,7 @@ package ru.nsu.ccfit.g20202.vartazaryan.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
-import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskDTO;
-import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskResourcesDTO;
-import ru.nsu.ccfit.g20202.vartazaryan.dto.ResourceDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.*;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.KioskMapper;
@@ -47,8 +44,9 @@ public class KioskController
     }
 
     @PutMapping
-    public void update()
+    public void update(@RequestBody UpdateDTO dto)
     {
+        kioskService.update(dto);
     }
 
     @GetMapping("/resources/{id}")

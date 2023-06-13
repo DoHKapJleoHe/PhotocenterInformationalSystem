@@ -57,6 +57,9 @@ public class ClientService
 
     public void deleteUserById(Long id)
     {
+        //TODO: Check if this client has any orders. If there are orders - do not delete client and throw exception,
+        // otherwise - delete client.
+
         clientRepository.deleteById(id);
     }
 

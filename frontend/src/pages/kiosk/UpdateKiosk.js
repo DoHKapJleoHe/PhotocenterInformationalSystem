@@ -1,52 +1,35 @@
 import React from "react";
 import axios from "axios";
 import Select from "react-select";
-import {CountryDropdown} from "react-country-region-selector";
 
-const FILIALS = 'http://localhost:8080/filials';
+const KIOSKS = 'http://localhost:8080/kiosks';
 
 const columns = [
-    {value: "Название", label: "Название"},
-    {value: "Город", label: "Город"},
-    {value: "Улица", label: "Улица"},
-    {value: "Рабочие места", label: "Рабочие места"}
+    {value: "Номер", label:"Номер"},
+    {value: "Рабочие места", label:"Рабочие места"},
+    {value: "Филиал", label:"Филиал"}
 ]
 
-class UpdateFilialPage extends React.Component
+class UpdateKiosk extends React.Component
 {
     constructor(props) {
         super(props);
         this.state = {
             column: "",
             value: "",
-            curFilial: 0,
-            filials:[]
+            curKiosk: 0,
+            kiosks: []
         }
-    }
-
-    componentDidMount() {
-        axios.get(FILIALS).then(response => {
-            const filials = response.data.map(filial => ({
-                value: filial.id,
-                label: filial.name
-            }))
-
-            this.setState({filials})
-        })
-    }
-
-    handleChange = (event) => {
-        this.setState({...this.state, [event.target.name]: event.target.value})
     }
 
     handleClick()
     {
-        console.log(this.state.curFilial + " " + this.state.column + " " + this.state.value)
-        let path = FILIALS
+        console.log(this.state.curKiosk + " " + this.state.column + " " + this.state.value)
+        let path = KIOSKS
         console.log(path)
 
         axios.put(path, {
-            id: this.state.curFilial,
+            id: this.state.curKiosk,
             column: this.state.column,
             value: this.state.value
         }, {
@@ -57,14 +40,33 @@ class UpdateFilialPage extends React.Component
         }).then(() => console.log("request successfully send"))
     }
 
-    render() {
+    handleChange = (event) => {
+        this.setState({...this.state, [event.target.name]: event.target.value})
+    }
+
+    componentDidMount()
+    {
+        axios.get(KIOSKS).then(response => {
+            console.log(response.data);
+            const kiosks = response.data.map(kiosk => ({
+                value: kiosk.id,
+                label: kiosk.number
+            }))
+            this.setState({kiosks});
+        }).catch(error => {
+            console.error(error);
+        });
+    }
+
+    render()
+    {
         return <div>
             <Select
                 className={"select"}
-                placeholder={"Филиал"}
-                value={this.state.curFilial.value}
-                onChange={selectedOption => this.setState({curFilial: selectedOption.value})}
-                options={this.state.filials}
+                placeholder={"Киоск"}
+                value={this.state.curKiosk.value}
+                onChange={selectedOption => this.setState({curKiosk: selectedOption.value})}
+                options={this.state.kiosks}
             />
 
             <Select
@@ -87,4 +89,4 @@ class UpdateFilialPage extends React.Component
     }
 }
 
-export default UpdateFilialPage
+export default UpdateKiosk

@@ -1,37 +1,35 @@
 import React from "react";
 import axios from "axios";
 import Select from "react-select";
-import {CountryDropdown} from "react-country-region-selector";
 
-const FILIALS = 'http://localhost:8080/filials';
+const PROVIDER = 'http://localhost:8080/providers';
 
 const columns = [
     {value: "Название", label: "Название"},
-    {value: "Город", label: "Город"},
-    {value: "Улица", label: "Улица"},
-    {value: "Рабочие места", label: "Рабочие места"}
+    {value: "Адрес", label: "Адрес"},
+    {value: "Номер телефона", label: "Номер телефона"}
 ]
 
-class UpdateFilialPage extends React.Component
+class UpdateProviderPage extends React.Component
 {
     constructor(props) {
         super(props);
         this.state = {
             column: "",
             value: "",
-            curFilial: 0,
-            filials:[]
+            curProvider: 0,
+            providers:[]
         }
     }
 
     componentDidMount() {
-        axios.get(FILIALS).then(response => {
-            const filials = response.data.map(filial => ({
-                value: filial.id,
-                label: filial.name
+        axios.get(PROVIDER).then(response => {
+            const providers = response.data.map(provider => ({
+                value: provider.id,
+                label: provider.name
             }))
 
-            this.setState({filials})
+            this.setState({providers})
         })
     }
 
@@ -42,11 +40,11 @@ class UpdateFilialPage extends React.Component
     handleClick()
     {
         console.log(this.state.curFilial + " " + this.state.column + " " + this.state.value)
-        let path = FILIALS
+        let path = PROVIDER
         console.log(path)
 
         axios.put(path, {
-            id: this.state.curFilial,
+            id: this.state.curProvider,
             column: this.state.column,
             value: this.state.value
         }, {
@@ -57,14 +55,15 @@ class UpdateFilialPage extends React.Component
         }).then(() => console.log("request successfully send"))
     }
 
-    render() {
+    render()
+    {
         return <div>
             <Select
                 className={"select"}
-                placeholder={"Филиал"}
-                value={this.state.curFilial.value}
-                onChange={selectedOption => this.setState({curFilial: selectedOption.value})}
-                options={this.state.filials}
+                placeholder={"Провайдер"}
+                value={this.state.curProvider.value}
+                onChange={selectedOption => this.setState({curProvider: selectedOption.value})}
+                options={this.state.providers}
             />
 
             <Select
@@ -82,9 +81,9 @@ class UpdateFilialPage extends React.Component
                    onChange={this.handleChange}
             />
 
-            <button className={"update"} onClick={() => this.handleClick()}> Update </button>
+            <button className={"update"} onClick={() => this.handleClick()}> Обновить </button>
         </div>
     }
 }
 
-export default UpdateFilialPage
+export default UpdateProviderPage;

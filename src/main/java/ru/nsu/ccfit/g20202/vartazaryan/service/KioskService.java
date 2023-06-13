@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.FilialDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.KioskDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Filial;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.KioskResource;
@@ -63,5 +64,21 @@ public class KioskService
     {
 
         return kioskResourceRepository.findAllByKiosk_Id(Long.valueOf(id));
+    }
+
+    public void update(UpdateDTO dto)
+    {
+        switch (dto.getColumn())
+        {
+            case "Номер" -> {kioskRepository.updateNumberById(dto.getId(), Integer.valueOf(dto.getValue()));}
+
+            case "Рабочие места" -> {kioskRepository.updateWorkplacesById(dto.getId(), Integer.valueOf(dto.getValue()));}
+
+            case "Филиал" -> {
+                var filial = filialRepository.findById(Long.valueOf(dto.getValue()));
+                if(filial.isPresent())
+                    kioskRepository.updateFilialById(dto.getId(), filial.get());
+            }
+        }
     }
 }

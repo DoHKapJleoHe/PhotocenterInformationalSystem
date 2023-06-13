@@ -72,7 +72,7 @@ class NewOrderPage extends React.Component
     {
         if(this.state.type === "Печать")
         {
-            if(this.state.curKioskPaper !== 0)
+            if(this.state.curKioskPaper !== 0 && this.state.curKioskInk !== 0)
             {
                 axios.post(PRINTING, {
                     numPhotos: this.state.numPhotos,

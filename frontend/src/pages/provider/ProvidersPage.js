@@ -28,6 +28,8 @@ class ProvidersPage extends React.Component
    {
        return <div>
            <Link to={"/new-provider"} className={"link"}>Добавить</Link>
+           <Link to={"/update-provider"} className={"link"}>Обновить</Link>
+           <Link to={"/delete-provider"} className={"link"}>Удалить</Link>
            <Link to={"/get-supply"} className={"link"}>Поставка</Link>
 
            <h2>Поставщики</h2>

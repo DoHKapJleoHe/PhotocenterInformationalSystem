@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.DeliveryDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.ProviderDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Kiosk;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.KioskResource;
 import ru.nsu.ccfit.g20202.vartazaryan.entities.Provider;
@@ -64,6 +65,23 @@ public class ProviderService
                     Math.toIntExact(dto.getResourceId()),
                     dto.getAmount()
             );
+        }
+    }
+
+    public void deleteProvider(Integer id)
+    {
+        providerRepository.deleteById(id);
+    }
+
+    public void update(UpdateDTO dto)
+    {
+        switch (dto.getColumn())
+        {
+            case "Название" -> {}
+
+            case "Адрес" -> {}
+
+            case "Номер телефона" -> {}
         }
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.DeliveryDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.dto.ProviderDTO;
+import ru.nsu.ccfit.g20202.vartazaryan.dto.UpdateDTO;
 import ru.nsu.ccfit.g20202.vartazaryan.mappers.ProviderMapper;
 import ru.nsu.ccfit.g20202.vartazaryan.service.ProviderService;
 
@@ -36,5 +37,17 @@ public class ProvidersController
     {
         System.out.println("Got new resource request");
         providerService.makeDelivery(dto);
+    }
+
+    @PutMapping
+    public void update(@RequestBody UpdateDTO dto)
+    {
+        providerService.update(dto);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id)
+    {
+        providerService.deleteProvider(id);
     }
 }

@@ -4,7 +4,7 @@ import axios from "axios";
 
 const PROVIDER = 'http://localhost:8080/providers';
 
-class NewProvider extends React.Component
+class NewProviderPage extends React.Component
 {
     constructor(props)
     {
@@ -59,4 +59,4 @@ class NewProvider extends React.Component
     }
 }
 
-export default NewProvider
+export default NewProviderPage

@@ -12,7 +12,7 @@ const columns = [
     {value:"Номер телефона", label:"Номер телефона"}
 ]
 
-class UpdateClient extends React.Component
+class UpdateClientPage extends React.Component
 {
     constructor(props) {
         super(props);
@@ -77,4 +77,4 @@ class UpdateClient extends React.Component
     }
 }
 
-export default UpdateClient;
+export default UpdateClientPage;
